@@ -1,0 +1,16 @@
+.light_green_dot {
+  background-color: #b9ea0f;
+}
+
+.green_dot {
+  background-color: #9dca00;
+}
+.light_green_dot,
+.green_dot {
+  border-radius: 10px;
+  height: 10px;
+  width: 15px;
+}
+.green_dot {
+  margin-left: -3px;
+}
