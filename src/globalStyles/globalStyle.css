@@ -18,6 +18,11 @@
   src: url("../assets/fonts/Poppins-Bold.ttf");
 }
 
+
+p,h1,h2,h3,h4,h5{
+  margin-bottom: 0 !important;
+}
+
 * {
   font-family: Poppins-Regular;
 }

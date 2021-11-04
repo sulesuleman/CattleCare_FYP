@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../../globalComponents";
-import { Banner, ServiceSection } from "./components";
+import { Banner, ChooseUsSection, PricingSection, ServiceSection } from "./components";
 import "./index.css";
 
 const LandingPage = () => {
@@ -9,6 +9,8 @@ const LandingPage = () => {
       <Header />
       <Banner />
       <ServiceSection />
+      <PricingSection />
+      <ChooseUsSection />
     </div>
   );
 };

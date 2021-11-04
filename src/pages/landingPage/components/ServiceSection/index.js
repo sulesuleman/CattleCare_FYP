@@ -12,9 +12,9 @@ const ServiceSection = () => {
     >
       <Container className="d-flex flex-column align-items-center">
         <p className="subHeading">What we Offer</p>
-        <h1 className="heading">Services We Offer</h1>
+        <h1 className="heading mt-2 mb-3">Services We Offer</h1>
         <GreenUnderline />
-        <Row>
+        <Row className="mt-3">
           <ServiceCard
             imgSrc={
               "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80"

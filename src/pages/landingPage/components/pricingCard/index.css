@@ -1,0 +1,40 @@
+.pricing_card {
+  height: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing_heading_container {
+  background-color: #2b343b;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pricing_heading_container h3 {
+  color: white;
+  font-family: "Poppins-SemiBold" !important;
+}
+.pricing_card .price {
+  text-align: center;
+  padding: 50px 0;
+  font-family: "Poppins-Bold" !important;
+  font-size: 30px;
+}
+.pricing_option_container {
+  display: flex;
+  flex-direction: column;
+}
+.pricing_option_container > div {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+}
+
+.pricing_option_container > div p {
+  font-family: "Poppins-Light" !important;
+  text-align: center;
+  font-size: 14px;
+}
