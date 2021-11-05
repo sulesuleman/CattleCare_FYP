@@ -1,11 +1,12 @@
 .header_container {
   height: 80px;
   width: 100%;
-  background-color: white;
-  position: sticky;
+  background-color: rgba(255, 255, 255 , 0.1);
+  position: fixed;
   top: 0;
-  -webkit-box-shadow: 5px 8px 13px -5px rgba(0,0,0,0.49); 
-  box-shadow: 5px 8px 13px -5px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 5px 8px 13px -5px rgba(0, 0, 0, 0.49);
+  box-shadow: 5px 8px 13px -5px rgba(0, 0, 0, 0.49);
+  z-index: 9999;
 }
 .header_logo {
   width: 50px;

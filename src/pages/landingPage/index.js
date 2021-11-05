@@ -1,7 +1,12 @@
 import React from "react";
 import { Header } from "../../globalComponents";
-import { Banner, ChooseUsSection, PricingSection, ServiceSection } from "./components";
-import "./index.css";
+import {
+  Banner,
+  ChooseUsSection,
+  HowDoesItWorkSection,
+  PricingSection,
+  ServiceSection,
+} from "./components";
 
 const LandingPage = () => {
   return (
@@ -11,6 +16,7 @@ const LandingPage = () => {
       <ServiceSection />
       <PricingSection />
       <ChooseUsSection />
+      <HowDoesItWorkSection />
     </div>
   );
 };

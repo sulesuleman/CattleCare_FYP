@@ -6,7 +6,7 @@ import "./index.css";
 
 const ServiceCard = ({ heading, description, imgSrc }) => {
   return (
-    <Col xs={12} sm={4}>
+    <Col xs={12} sm={6} md={4}>
       <motion.div
         initial="rest"
         whileHover="hover"

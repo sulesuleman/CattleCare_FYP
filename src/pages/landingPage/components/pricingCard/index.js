@@ -7,7 +7,7 @@ export const PricingCard = ({
   options = ["Manage Animals", "Manage Feed", "Manage Cattle"],
 }) => {
   return (
-    <Col xs={12} sm={4}>
+    <Col xs={12} sm={6} md={4}>
       <div className="pricing_card">
         <div className="pricing_heading_container">
           <h3>Basic Plan</h3>

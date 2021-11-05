@@ -1,0 +1,36 @@
+.banner_image {
+  height: 75vh;
+  background-image: url("../../../../assets/images/banner_image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  position: relative;
+}
+.banner_overlay {
+  position: absolute;
+  max-width: 800px;
+  left: 10%;
+  top: 30%;
+}
+.black_overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.banner_overlay h1 {
+  text-transform: uppercase;
+  font-family: "Poppins-Bold" !important;
+  color: white;
+}
+.banner_overlay p {
+  color: white;
+  font-family: "Poppins-Light" !important;
+}
+.banner_carousel{
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -200px;
+}

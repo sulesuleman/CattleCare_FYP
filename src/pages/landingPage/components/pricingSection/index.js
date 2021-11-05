@@ -15,7 +15,7 @@ const PricingSection = () => {
         <p className="subHeading">Our Special Plan</p>
         <h1 className="heading mt-2 mb-3">Our Pricing</h1>
         <GreenUnderline />
-        <Row className="gx-5 w-100 mt-5">
+        <Row className="gx-5 gy-5 w-100 mt-5">
           <PricingCard />
           <PricingCard />
           <PricingCard />

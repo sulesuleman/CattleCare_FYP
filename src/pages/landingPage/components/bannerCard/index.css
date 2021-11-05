@@ -1,0 +1,19 @@
+.banner_card_container {
+  height: 300px;
+  width: 350px;
+  border-radius: 10px;
+  background-color: #9dca00;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+}
+.banner_card_container h2 {
+  font-family: "Poppins-Bold" !important;
+}
+.banner_card_container p {
+  text-align: center;
+  font-family: "Poppins-Light" !important;
+}
