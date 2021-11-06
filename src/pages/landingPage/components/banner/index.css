@@ -10,7 +10,7 @@
 
 .banner_overlay {
   position: absolute;
-  max-width: 800px;
+  width: 60%;
   left: 10%;
   top: 30%;
 }
@@ -38,11 +38,42 @@
   position: absolute;
   left: 10%;
   right: 10%;
-  bottom: -150px; 
+  bottom: -11px;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 425px) {
+  .banner_overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 30px 30px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+  }
+
+  .banner_overlay h1 {
+    font-size: 16px;
+    padding: 10px 0px
+  }
+
+  .banner_overlay p {
+    font-size: 14px;
+    padding: 10px 0px
+  }
+
   .banner_carousel {
     position: relative;
+    padding: 30px 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .banner_image {
+    height: 380px;
   }
 }

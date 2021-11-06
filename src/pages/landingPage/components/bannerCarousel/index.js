@@ -12,8 +12,13 @@ class BannerCarousel extends Component {
         breakpoint: { max: 4000, min: 3000 },
         slidesToSlide: 5,
       },
+      largeDesktop: {
+        breakpoint: { max: 3000, min: 1920 },
+        items: 4,
+        slidesToSlide: 4
+      },
       desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: { max: 1919, min: 1024 },
         items: 3,
         slidesToSlide: 3
       },
@@ -44,12 +49,12 @@ class BannerCarousel extends Component {
         transitionDuration={200}
         containerClass="carousel-container"
         renderArrowsWhenDisabled={true}
-        removeArrowOnDeviceType={["tablet", "mobile"]}
+        // removeArrowOnDeviceType={["tablet", "mobile"]}
         // deviceType={props.deviceType}
         // dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
-        // className="my-5"
-        renderButtonGroupOutside={true}
+      // className="my-5"
+      // renderButtonGroupOutside={true}
       >
         <BannerCard step={'Step 1'}
           description="Lorem Ipsum is simply dummy text of the printing and type setting

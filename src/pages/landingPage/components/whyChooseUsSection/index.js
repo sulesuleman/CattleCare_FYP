@@ -3,6 +3,8 @@ import "./index.css";
 import { greyishWhiteColor } from "../../../../globalStyles/globalStyle";
 import { Row, Col } from "react-bootstrap";
 import FIRE_IMG from "../../../../assets/images/fire.png";
+import GURANTEE_IMG from '../../../../assets/images/gurantee.png'
+import PADLOCK_IMG from '../../../../assets/images/padlock.png'
 
 const ChooseUsSection = () => {
   return (
@@ -29,9 +31,9 @@ const ChooseUsSection = () => {
               </p>
             </Col>
           </Row>
-          <Row className="mt-5 mb-2">
+          <Row className="mt-3 mb-2">
             <Col xs={3} className="chooseus_desc_logo">
-              <img src={FIRE_IMG} alt="" width="50" height="auto" />
+              <img src={GURANTEE_IMG} alt="" width="50" height="auto" />
             </Col>
             <Col xs={9} className="chooseus_desc">
               <h4>30 Days Gaurantee</h4>
@@ -40,9 +42,9 @@ const ChooseUsSection = () => {
               </p>
             </Col>
           </Row>
-          <Row className="mt-5 mb-2">
+          <Row className="mt-3 mb-2">
             <Col xs={3} className="chooseus_desc_logo">
-              <img src={FIRE_IMG} alt="" width="50" height="auto" />
+              <img src={PADLOCK_IMG} alt="" width="50" height="auto" />
             </Col>
             <Col xs={9} className="chooseus_desc">
               <h4>Secure Payments</h4>
