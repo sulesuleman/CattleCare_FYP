@@ -1,2 +1,22 @@
-.banner_carousel_container {
+
+.slick-prev:before,
+.slick-next:before {
+  display: none;
+}
+
+.client_arrow {
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s all;
+  background-color: black;
+}
+
+.client_arrow svg {
+  transition: 0.3s all;
+  fill: white !important;
 }

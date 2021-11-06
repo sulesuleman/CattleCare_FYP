@@ -16,9 +16,24 @@ const PricingSection = () => {
         <h1 className="heading mt-2 mb-3">Our Pricing</h1>
         <GreenUnderline />
         <Row className="gx-5 gy-5 w-100 mt-5">
-          <PricingCard />
-          <PricingCard />
-          <PricingCard />
+          <PricingCard
+            planName="50 Cattle Package"
+            price="99"
+            options={["15 days free trial", "Within trial period cancel time"]}
+          />
+          <PricingCard
+            planName="150 Cattle Package"
+            price="199"
+            options={[
+              "15 days free trial",
+              "Within trial period cancel my time",
+            ]}
+          />
+          <PricingCard
+            planName="300 Cattle Package"
+            price="299"
+            options={["15 days trial", "Within trail period cancel any time"]}
+          />
         </Row>
       </Container>
     </div>

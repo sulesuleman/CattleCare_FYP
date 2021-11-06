@@ -4,15 +4,17 @@ import { Button } from "../../../../globalComponents";
 import "./index.css";
 
 export const PricingCard = ({
+  planName = "",
+  price = "",
   options = ["Manage Animals", "Manage Feed", "Manage Cattle"],
 }) => {
   return (
     <Col xs={12} sm={6} md={4}>
       <div className="pricing_card">
         <div className="pricing_heading_container">
-          <h3>Basic Plan</h3>
+          <h3>{planName}</h3>
         </div>
-        <div className="price">$23/month</div>
+        <div className="price">${price}/month</div>
         <div className="pricing_option_container">
           {options.map((optName) => (
             <div>

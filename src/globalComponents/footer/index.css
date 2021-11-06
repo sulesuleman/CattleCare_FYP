@@ -1,0 +1,16 @@
+#footer > #footer-row p {
+    font-size: 14px;
+    font-weight: 200;
+    color: #cfc2c2 !important;
+    text-decoration: none !important;
+  }
+  #footer > #footer-row a {
+    font-size: 14px;
+    font-weight: 200;
+    color: #cfc2c2 !important;
+    text-decoration: none !important;
+  }
+
+  #footer > #footer-row a:hover{
+      text-decoration: underline !important;
+  }

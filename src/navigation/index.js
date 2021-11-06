@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import Footer from "../globalComponents/footer";
 import routes from "./routes";
 
 export const RouterConfig = () => {
@@ -18,6 +19,7 @@ export const RouterConfig = () => {
           ))}
         </Switch>
       </Suspense>
+      <Footer/>
     </Router>
   );
 };

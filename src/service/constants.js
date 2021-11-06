@@ -1,3 +1,4 @@
-let getTeams = "getTeams";
+let postSigninForm = "/signin";
+let postSignupForm = "/signup";
 
-export { getTeams };
+export { postSigninForm, postSignupForm };

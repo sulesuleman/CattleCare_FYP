@@ -3,6 +3,7 @@ import React from "react";
 import { Button, GreenUnderline } from "../../../../globalComponents";
 import "./index.css";
 import BannerCarousel from "../bannerCarousel";
+import { Container } from "react-bootstrap";
 
 const Banner = () => (
   <div>
@@ -35,11 +36,15 @@ const Banner = () => (
         ></Button>
       </motion.div>
     </div>
-    <div className="container">
+    <Container>
       <div className="banner_carousel">
+        <div className="carousel_title">
+        <p className="subHeading">Working Process</p>
+        <h1 className="heading mt-2 mb-3">How Does We Work</h1>
+          </div>
         <BannerCarousel />
       </div>
-    </div>
+    </Container>
   </div>
 );
 

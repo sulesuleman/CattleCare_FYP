@@ -1,86 +1,101 @@
 import React, { Component } from "react";
-import Carousel from "react-multi-carousel";
+import Slider from "react-slick";
 import BannerCard from "../bannerCard";
-import "react-multi-carousel/lib/styles.css";
+import "./index.css";
 
 class BannerCarousel extends Component {
   render() {
-    const responsive = {
-      superLargeDesktop: {
-        // the naming can be any, depends on you.
-        items: 5,
-        breakpoint: { max: 4000, min: 3000 },
-        slidesToSlide: 5,
-      },
-      largeDesktop: {
-        breakpoint: { max: 3000, min: 1920 },
-        items: 4,
-        slidesToSlide: 4
-      },
-      desktop: {
-        breakpoint: { max: 1919, min: 1024 },
-        items: 3,
-        slidesToSlide: 3
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-        slidesToSlide: 2
-      },
-      mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-        slidesToSlide: 1
-      },
+    const settings = {
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      dots: false,
+      nextArrow: <CustomRightArrow />,
+      prevArrow: <CustomLeftArrow />,
+      responsive: [
+        {
+          breakpoint: 680,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
     return (
-      <Carousel
-        responsive={responsive}
-        swipeable={true}
-        draggable={false}
-        showDots={false}
-        // ssr={true} // means to render carousel on server-side.
-        // infinite={true}
-        autoPlay={false}
-        // autoPlay={props.deviceType !== "mobile" ? true : false}
-        autoPlaySpeed={3000}
-        keyBoardControl={true}
-        customTransition="transform 300ms ease-in-out"
-        transitionDuration={200}
-        containerClass="carousel-container"
-        renderArrowsWhenDisabled={true}
-        // removeArrowOnDeviceType={["tablet", "mobile"]}
-        // deviceType={props.deviceType}
-        // dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-      // className="my-5"
-      // renderButtonGroupOutside={true}
-      >
-        <BannerCard step={'Step 1'}
-          description="Lorem Ipsum is simply dummy text of the printing and type setting
+      <div>
+        <Slider {...settings}>
+          <BannerCard
+            step={"Step 4"}
+            description="Lorem Ipsum is simply dummy text of the printing and type setting
             industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
         scramble"
-        />
-        <BannerCard step={'Step 2'}
-          description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"/>
-        <BannerCard step={'Step 3'}
-          description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"/>
-        <BannerCard step={'Step 4'}
-          description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"/>
+          />
 
-      </Carousel>
-    )
+          <BannerCard
+            step={"Step 4"}
+            description="Lorem Ipsum is simply dummy text of the printing and type setting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+        scramble"
+          />
+          <BannerCard
+            step={"Step 4"}
+            description="Lorem Ipsum is simply dummy text of the printing and type setting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+        scramble"
+          />
+
+          <BannerCard
+            step={"Step 4"}
+            description="Lorem Ipsum is simply dummy text of the printing and type setting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+        scramble"
+          />
+        </Slider>
+      </div>
+    );
   }
 }
+const CustomLeftArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      className={`${className} client_arrow`}
+      style={{ ...style }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15">
+        <path d="M501.333 245.333H36.417l141.792-141.792c4.167-4.167 4.167-10.917 0-15.083-4.167-4.167-10.917-4.167-15.083 0l-160 160c-4.167 4.167-4.167 10.917 0 15.083l160 160a10.634 10.634 0 007.542 3.125c2.729 0 5.458-1.042 7.542-3.125 4.167-4.167 4.167-10.917 0-15.083L36.417 266.667h464.917c5.896 0 10.667-4.771 10.667-10.667s-4.772-10.667-10.668-10.667z" />
+      </svg>
+    </div>
+  );
+};
+
+const CustomRightArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      className={`${className} client_arrow`}
+      style={{ ...style }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15">
+        <path d="M508.875 248.458l-160-160c-4.167-4.167-10.917-4.167-15.083 0-4.167 4.167-4.167 10.917 0 15.083l141.792 141.792H10.667C4.771 245.333 0 250.104 0 256s4.771 10.667 10.667 10.667h464.917L333.792 408.458c-4.167 4.167-4.167 10.917 0 15.083a10.634 10.634 0 007.542 3.125c2.729 0 5.458-1.042 7.542-3.125l160-160c4.166-4.166 4.166-10.916-.001-15.083z" />
+      </svg>
+    </div>
+  );
+};
 
 export default BannerCarousel;

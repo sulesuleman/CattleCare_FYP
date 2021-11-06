@@ -33,12 +33,35 @@
   font-family: "Poppins-Light" !important;
 }
 
-
 .banner_carousel {
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  bottom: -11px;
+  margin-top: -100px;
+}
+
+.carousel_title {
+  display: none;
+}
+@media screen and (max-width: 770px) {
+  .banner_carousel {
+    margin-top: 0;
+  }
+  .carousel_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .slick-prev {
+    left: 1% !important;
+    z-index: 1;
+  }
+  .slick-next {
+    right: 1% !important;
+    z-index: 1;
+  }
 }
 
 @media screen and (max-width: 425px) {
@@ -57,21 +80,21 @@
 
   .banner_overlay h1 {
     font-size: 16px;
-    padding: 10px 0px
+    padding: 10px 0px;
   }
 
   .banner_overlay p {
     font-size: 14px;
-    padding: 10px 0px
+    padding: 10px 0px;
   }
 
-  .banner_carousel {
+  /* .banner_carousel {
     position: relative;
     padding: 30px 0px;
     left: 0;
     right: 0;
     bottom: 0;
-  }
+  } */
 
   .banner_image {
     height: 380px;
