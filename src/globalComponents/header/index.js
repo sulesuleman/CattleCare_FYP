@@ -10,7 +10,10 @@ const Header = () => {
     <nav className="header_container shadow-sm">
       <Container style={{ height: "100%" }}>
         <div className="d-flex justify-content-between align-items-center h-100">
-          <img src={LOGO} className="header_logo" alt="" />
+          <div className="d-flex align-items-center header-logo-desc">
+            <img src={LOGO} className="header_logo" alt="" />
+            <p className="px-3">Cattle Care</p>
+          </div>
           <div className="navbar_links">
             <Link>Login/Signup</Link>
           </div>

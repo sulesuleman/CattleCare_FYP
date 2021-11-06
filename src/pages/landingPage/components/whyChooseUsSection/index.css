@@ -1,25 +1,29 @@
 .choose_us_container {
-  height: 600px;
+  height: auto;
   display: flex;
+  width: 100%;
   margin-bottom: 50px;
 }
+
 .choose_us_container .left_side {
-  width: 40%;
-  height: 100%;
+  width: 50%;
+  height: 500px;
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  z-index: 1;
+  z-index: 0;
   background-image: url("https://www.apa.org/images/farmers-stress-title_tcm7-262116.jpg");
 }
 
 .choose_us_container .right_side {
   width: 50%;
-  height: 100%;
+  min-height: 500px;
   position: relative;
-  left: -50px;
   top: 50px;
+  left: -50px;
 }
+
 .choose_us_container .right_side .img_overlay {
   background-image: url("https://www.cdc.gov/foodsafety/images/comms/features/GettyImages-1247930626-500px.jpg");
   position: absolute;
@@ -33,6 +37,7 @@
   z-index: 2;
   bottom: 0;
 }
+
 .choose_us_container .right_side .green_overlay {
   background-color: rgba(165, 205, 21, 0.9);
   position: absolute;
@@ -44,23 +49,28 @@
   z-index: 3;
   bottom: 0;
 }
+
 .right_desc {
-  position: absolute;
+  position: relative;
   z-index: 4;
   padding: 60px 10%;
   color: white;
 }
+
 .right_desc h2 {
   font-family: "Poppins-Bold" !important;
 }
+
 .chooseus_desc_logo {
   justify-content: center;
-  align-items: center;
+  align-items: start;
   display: flex;
 }
+
 .chooseus_desc h4 {
   font-family: "Poppins-SemiBold" !important;
 }
+
 .chooseus_desc p {
   font-family: "Poppins-Light" !important;
 }
@@ -70,13 +80,15 @@
     flex-direction: column;
     height: 1020px;
   }
+
   .choose_us_container .left_side {
     width: 100%;
     height: 40%;
   }
+
   .choose_us_container .right_side {
     width: 100%;
-    height: 60%;
+    /* height: 750px; */
   }
 
   .choose_us_container .right_side {
