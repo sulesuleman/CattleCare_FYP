@@ -47,7 +47,7 @@ const ChooseUsSection = () => {
             <Col xs={9} className="chooseus_desc">
               <h4>Secure Payments</h4>
               <p className="mt-2">
-              All payments are securely processed through Easypaisa, JazzCash and Mastercard.
+                All payments are securely processed through Easypaisa, JazzCash and Mastercard.
 
               </p>
             </Col>
