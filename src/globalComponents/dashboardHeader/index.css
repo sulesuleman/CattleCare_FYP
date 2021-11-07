@@ -1,0 +1,8 @@
+.dashboard_header_container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.user_name{
+  color: #738C8E;
+  margin-right: 10px;
+}

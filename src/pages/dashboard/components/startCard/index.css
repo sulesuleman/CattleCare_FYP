@@ -1,0 +1,10 @@
+.stat_card {
+  border-radius: 10px;
+  border: 4px solid #4c6a6e;
+  height: 150px;
+  padding: 10px;
+}
+.stat_card_heading {
+  font-family: 'Poppins-SemiBold';
+  font-size: 24px;
+}

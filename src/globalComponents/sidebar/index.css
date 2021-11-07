@@ -1,0 +1,52 @@
+.sidebar_container {
+  height: 100%;
+  width: 250px;
+  background-color: #e5f5f2;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+}
+.logo_heading {
+  font-size: 24px;
+  margin-left: 10px;
+  color: #456468;
+  font-family: "Poppins-SemiBold" !important;
+}
+.dashboard_links {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.dashboard_links > div {
+  margin-bottom: 10px;
+}
+.dashboard_links a {
+  text-decoration: none !important;
+  color: #759291;
+  transition: 0.3s all;
+  margin-left: 5px;
+
+  /* font-family: 'Poppins-SemiBold'; */
+}
+
+.dashboard_links > div:hover .hovered_green_line {
+  width: 70%;
+}
+
+.dashboard_links > div:hover svg path {
+  fill: #2cb178;
+}
+
+.hovered_green_line {
+  width: 0;
+  background-color: #2cb178;
+  height: 2px;
+  transition: 0.3s all;
+}
+
+.dashboard_links a:hover {
+  color: #2cb178;
+}

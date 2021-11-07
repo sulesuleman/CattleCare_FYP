@@ -1,0 +1,17 @@
+.dashboard_page_container {
+  height: 100%;
+  width: 100%;
+}
+.dashboard_page_container {
+  height: 100vh;
+}
+.greeting_msg {
+  color: #456468;
+  width: fit-content;
+  font-family: "Poppins-SemiBold" !important;
+  text-transform: capitalize;
+}
+.stat_msg {
+  color: #9daeb0;
+  margin-top: 15px;
+}

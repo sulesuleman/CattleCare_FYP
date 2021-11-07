@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import { postRequest } from "../../../../service/apiClient";
 import { postSignupForm } from "../../../../service/constants";
 import { asyncLocalStorage } from "../../../../utils";
+import { SignupSchema } from "../../../../utils/validationSchema";
 
 const RegisterForm = ({ onScreenChange }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,7 +97,7 @@ const RegisterForm = ({ onScreenChange }) => {
       <div className="login_form">
         <Formik
           onSubmit={handleSignupSubmit}
-          validate={handleValidation}
+          validationSchema={SignupSchema}
           initialValues={{
             name: "",
             email: "",
