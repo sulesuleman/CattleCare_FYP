@@ -23,3 +23,22 @@ export const SignupSchema = Yup.object().shape({
         .max(300, 'Maximum 300 symbols')
         .required('Address is a required field')
 });
+
+export const addAnimalSchema = Yup.object().shape({
+    weight: Yup.string()
+        .required('Weight is a required field'),
+    age: Yup.string()
+        .required('Age is a required field'),
+    breedType: Yup.string()
+        .required('Breed type is a required field'),
+    cattleType: Yup.string()
+        .required("Cattle type is a required field"),
+    sex: Yup.string()
+        .required('Sex is a required field'),
+    price: Yup.string()
+        .required('Price is a required field'),
+    anticipationDate: Yup.string()
+        .required('Anticipation Date is a required field'),
+    childCount: Yup.string()
+        .required('child count is a required field'),
+});

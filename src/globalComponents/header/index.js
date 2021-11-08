@@ -15,7 +15,7 @@ const Header = () => {
             <p className="px-3">Cattle Care</p>
           </div>
           <div className="navbar_links">
-            <Link>Login/Signup</Link>
+            <Link to="/login-signup">Login/Signup</Link>
           </div>
         </div>
       </Container>

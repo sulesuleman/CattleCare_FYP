@@ -49,9 +49,24 @@ const LoginForm = ({ onScreenChange }) => {
           alignItems: "center",
         }}
       >
-        <Button size="large" type="primary" onClick={onScreenChange}>
+        <Button
+          size="large"
+          type="primary"
+          style={{ marginLeft: 5 }}
+          className="btn_green"
+          onClick={() => history.push("/")}
+        >
+          Home
+        </Button>
+        <Button
+          size="large"
+          type="primary"
+          className="btn_green"
+          onClick={onScreenChange}
+        >
           Register
         </Button>
+
         <p style={{ marginRight: 10 }} className="greyText">
           Don't have an account?
         </p>
@@ -64,7 +79,7 @@ const LoginForm = ({ onScreenChange }) => {
           Login with your data that you entered during your registration
         </p>
       </div>
-      <div className="login_form" >
+      <div className="login_form">
         <Formik
           onSubmit={handleSignupSubmit}
           validate={handleValidation}

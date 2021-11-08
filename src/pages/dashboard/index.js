@@ -43,7 +43,7 @@ const DashboardPage = () => {
             <StatCard
               bgColor="#E6F6EF"
               headingName="Total Animals"
-              count=""
+              count="20"
               txtColor="#456468"
             />
           </Col>
@@ -51,7 +51,7 @@ const DashboardPage = () => {
             <StatCard
               bgColor="#409872"
               headingName="Total Feed"
-              count=""
+              count="24"
               txtColor="white"
             />
           </Col>

@@ -3,13 +3,14 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Footer from "../globalComponents/footer";
 import routes from "./routes";
 import { DashboardLayout } from "../layout/dashboardLayout";
+import { Spinner } from "react-bootstrap";
 
 export const RouterConfig = () => {
   return (
     <Router>
       <DashboardLayout>
         {/* <NavBar /> */}
-        <Suspense fallback={<h1>loading</h1>}>
+        <Suspense fallback={<Spinner animation="border" variant="primary" />}>
           <Switch>
             {routes.map(({ Component, exact, path }, index) => (
               <Route
@@ -21,7 +22,6 @@ export const RouterConfig = () => {
             ))}
           </Switch>
         </Suspense>
-        <Footer />
       </DashboardLayout>
     </Router>
   );

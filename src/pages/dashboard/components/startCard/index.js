@@ -9,6 +9,9 @@ const StatCard = ({ bgColor = "", headingName = "", count = "", txtColor }) => {
           {headingName}
         </h3>
       </div>
+      <p style={{ color: txtColor }} className="stat_card_count">
+        {count}
+      </p>
     </div>
   );
 };
