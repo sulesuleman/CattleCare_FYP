@@ -6,10 +6,10 @@ const DashboardHeader = () => {
   return (
     <div className="dashboard_header_container">
       <div className="d-flex align-items-center">
-        <p className="user_name">Usman Malik</p>
+        <p className="user_name">Lorem Ipsum</p>
 
         <Avatar
-          name="Usman"
+          name="Lorem Ipsum"
           color="#2cb178"
           round
           size="50"

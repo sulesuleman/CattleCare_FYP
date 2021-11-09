@@ -10,7 +10,10 @@ export const RouterConfig = () => {
     <Router>
       <DashboardLayout>
         {/* <NavBar /> */}
-        <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+        <Suspense fallback={
+          <div className="h-100 w-100 flex justify-content-center align-items-center">
+            <Spinner animation="border" variant="primary" />
+          </div>}>
           <Switch>
             {routes.map(({ Component, exact, path }, index) => (
               <Route

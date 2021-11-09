@@ -5,40 +5,46 @@ import { postSigninForm } from "../../../../service/constants";
 import { asyncLocalStorage } from "../../../../utils";
 import { Button } from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { LoginSchema } from "../../../../utils/validationSchema";
 
 const LoginForm = ({ onScreenChange }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const history = useHistory();
 
   const handleSignupSubmit = async (values) => {
-    try {
-      setIsSubmitting(true);
-      const {
-        data: { token, user },
-      } = await postRequest(postSigninForm, { ...values });
-      setIsSubmitting(false);
-      if (user) {
-        asyncLocalStorage
-          .setItem("token", JSON.stringify(token))
-          .then((value) => history.push("/"));
-      }
-    } catch (error) {
-      setIsSubmitting(false);
-      console.error(error);
-    }
+    // try {
+    setIsSubmitting(true);
+    const { email, password } = values;
+    email === 'farmer@gmail.com' && password === '1234567890'
+      && history.push('/dashboard')
+    //   const {
+    //     data: { token, user },
+    //   } = await postRequest(postSigninForm, { ...values });
+    //   setIsSubmitting(false);
+    //   if (user) {
+    //     asyncLocalStorage
+    //       .setItem("token", JSON.stringify(token))
+    //       .then((value) => history.push("/"));
+    //   }
+    // } catch (error) {
+    //   setIsSubmitting(false);
+    //   console.error(error);
+    // }
   };
 
-  const handleValidation = (values) => {
-    let errors = {};
-    let { email, password } = values;
-    if (!email) {
-      errors.email = "Email is required";
+
+  const getInputClasses = (touched, fieldname, errors) => {
+    if (touched[fieldname] && errors[fieldname]) {
+      return "is-invalid";
     }
-    if (!password) {
-      errors.password = "Password is required";
+
+    if (touched[fieldname] && !errors[fieldname]) {
+      return "is-valid";
     }
-    return errors;
+
+    return "";
   };
+
 
   return (
     <div className="login_signup_form_container">
@@ -82,17 +88,19 @@ const LoginForm = ({ onScreenChange }) => {
       <div className="login_form">
         <Formik
           onSubmit={handleSignupSubmit}
-          validate={handleValidation}
+          validationSchema={LoginSchema}
           initialValues={{
             email: "",
             password: "",
           }}
         >
-          {({ submitForm }) => (
+          {({ submitForm, errors, touched }) => (
             <Form>
               <div>
                 <label>Email Address</label>
-                <Field name="email" placeholder="eg@example.com" />
+                <Field name="email" placeholder="eg@example.com"
+                  className={getInputClasses(touched, "email", errors)}
+                />
                 <ErrorMessage component="div" name="email" className="error" />
               </div>
               <div style={{ marginTop: 20 }}>
@@ -101,6 +109,7 @@ const LoginForm = ({ onScreenChange }) => {
                   name="password"
                   placeholder="Enter Password"
                   type="password"
+                  className={getInputClasses(touched, "password", errors)}
                 />
                 <ErrorMessage
                   component="div"
