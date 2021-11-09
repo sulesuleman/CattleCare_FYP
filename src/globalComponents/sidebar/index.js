@@ -55,7 +55,7 @@ export const SideBar = () => {
             </NavLink>
           </div>
         </div>
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center logout">
           {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -91,6 +91,15 @@ export const SideBar = () => {
           <div>
             <NavLink to="add-feed" activeClassName="is_active">
               <div> Add Feeds</div> <div className="hovered_green_line"></div>
+            </NavLink>
+          </div>
+        </div>
+        <div className="d-flex align-items-center">
+          {" "}
+          <div>
+            <NavLink to="/" activeClassName="is_active">
+              <div>Logout</div>{" "}
+              <div className="hovered_green_line"></div>
             </NavLink>
           </div>
         </div>
