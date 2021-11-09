@@ -123,7 +123,9 @@ const LoginForm = ({ onScreenChange }) => {
                   type="primary"
                   className="full_expanded_btn"
                   loading={isSubmitting}
-                  onClick={submitForm}
+                  onClick={() => {
+                    history.push("/dashboard");
+                  }}
                 >
                   Start Now
                 </Button>

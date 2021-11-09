@@ -1,16 +1,14 @@
 import React from "react";
-import { Header } from "../../globalComponents";
 import {
   Banner,
   ChooseUsSection,
   PricingSection,
-  ServiceSection,
+  ServiceSection
 } from "./components";
 
 const LandingPage = () => {
   return (
     <div>
-      <Header />
       <Banner />
       <ServiceSection />
       <PricingSection />

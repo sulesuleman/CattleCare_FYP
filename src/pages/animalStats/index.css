@@ -1,0 +1,18 @@
+.table_actions_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table_actions_container svg:hover {
+  fill: #2cb178;
+}
+.animal_stats_container tbody tr {
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 0 5pt 0.5pt rgba(211, 211, 211, 0.4);
+}
+
+.animal_stats_container tbody td {
+  padding: 20px 0;
+}

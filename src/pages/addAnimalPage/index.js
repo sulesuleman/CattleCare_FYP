@@ -96,7 +96,7 @@ const AddAnimalPage = () => {
               <div style={{ marginTop: 20 }}>
                 <Row>
                   <Col>
-                    <label className="mb-2">Sex</label>
+                    <label >Sex</label>
                     <Field
                       name="sex"
                       placeholder="Please Enter Sex"
