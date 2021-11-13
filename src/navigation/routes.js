@@ -5,6 +5,7 @@ let LANDINGPAGE = React.lazy(() => import("../pages/landingPage"));
 let DASHBOARDPAGE = React.lazy(() => import("../pages/dashboard"));
 let ADDANIMALPAGE = React.lazy(() => import("../pages/addAnimalPage"));
 let ANIMALSTATS = React.lazy(() => import("../pages/animalStats"));
+let FARMERPAGE = React.lazy(() => import("../pages/farmerStatistics"));
 let VIEWANIMALSTATS = React.lazy(() =>
   import("../pages/animalStats/viewAnimalStats")
 );
@@ -49,6 +50,13 @@ let routes = [
     path: "/animal-stats/:id",
     exact: true,
     Component: VIEWANIMALSTATS,
+    isProtected: false,
+    isPartOfDashboard: true,
+  },
+  {
+    path: "/farmer-statistics",
+    exact: true,
+    Component: FARMERPAGE,
     isProtected: false,
     isPartOfDashboard: true,
   },
