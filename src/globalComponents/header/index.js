@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import "./index.css";
 import LOGO from "../../assets/images/logoHead.png";
@@ -14,8 +14,21 @@ const Header = () => {
             <img src={LOGO} className="header_logo" alt="" />
             <p className="px-3">Cattle Care</p>
           </div>
-          <div className="navbar_links">
-            <Link to="/login-signup">Login/Signup</Link>
+          <div className="dashboard_links m-0 flex-row align-items-center">
+            <div className="d-flex align-items-center px-4 m-0">
+              <NavLink exact to="/" activeClassName="is_active">
+                <div>Home</div>
+                <div className="hovered_green_line"></div>
+              </NavLink>
+            </div>
+            <div className="d-flex align-items-center m-0">
+              <div>
+                <NavLink to="/login-signup" activeClassName="is_active">
+                  <div>Login/Signup</div>
+                  <div className="hovered_green_line"></div>
+                </NavLink>
+              </div>
+            </div>
           </div>
         </div>
       </Container>

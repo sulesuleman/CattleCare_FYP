@@ -3,9 +3,10 @@
   width: 100%;
   display: flex;
   background-color: #f7fcfa;
-  overflow: auto;
+  overflow-x: auto;
 }
 .dashboard_screens {
   flex: 1;
   padding: 20px 30px;
+  overflow-x: auto;
 }

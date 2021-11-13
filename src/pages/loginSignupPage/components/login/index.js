@@ -58,15 +58,6 @@ const LoginForm = ({ onScreenChange }) => {
         <Button
           size="large"
           type="primary"
-          style={{ marginLeft: 5 }}
-          className="btn_green"
-          onClick={() => history.push("/")}
-        >
-          Home
-        </Button>
-        <Button
-          size="large"
-          type="primary"
           className="btn_green"
           onClick={onScreenChange}
         >

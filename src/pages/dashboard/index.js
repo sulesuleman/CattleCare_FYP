@@ -38,8 +38,16 @@ const DashboardPage = () => {
         </p>
       </div>
       <div className="stats_container">
-        <Row className="gx-3 gy-5 mt-5">
-          <Col xs={3}>
+        <Row className="gx-3 gx-lg-4 gy-3 mt-5">
+          <Col xs={12} md={6} lg={4}>
+            <StatCard
+              bgColor="#409872"
+              headingName="Total Expenses"
+              count="$15000"
+              txtColor="white"
+            />
+          </Col>
+          <Col xs={12} md={6} lg={4} >
             <StatCard
               bgColor="#E6F6EF"
               headingName="Total Animals"
@@ -47,7 +55,7 @@ const DashboardPage = () => {
               txtColor="#456468"
             />
           </Col>
-          <Col xs={3}>
+          <Col xs={12} md={6} lg={4}>
             <StatCard
               bgColor="#409872"
               headingName="Total Feed"
