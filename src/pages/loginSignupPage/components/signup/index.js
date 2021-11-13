@@ -74,15 +74,6 @@ const RegisterForm = ({ onScreenChange }) => {
         }}
       >
         <Button
-          size="large"
-          type="primary"
-          style={{ marginLeft: 5 }}
-          className="btn_green"
-          onClick={() => history.push("/")}
-        >
-          Home
-        </Button>
-        <Button
           className="btn_green"
           size="large"
           type="primary"

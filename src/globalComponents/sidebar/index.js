@@ -116,7 +116,7 @@ export const SideBar = () => {
           </div>
         </div>
       </div>
-      <div className="d-flex align-items-center">
+      <div className="d-flex justify-center align-items-center">
         <Button
           type="primary"
           className="d-flex align-items-center btn_green"
