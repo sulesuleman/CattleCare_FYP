@@ -3,7 +3,7 @@ import { Card, Col, Row, Nav, Table, Button, Progress } from 'react-bootstrap'
 import { Doughnut } from 'react-chartjs-2'
 const Traffic = ({ stateofPie }) => {
   return (
-    <Card className='shadow'>
+    <Card className='shadow-sm'>
       <Card.Header className='border-0'>
         <Row className='align-items-center'>
           <div className='col'>

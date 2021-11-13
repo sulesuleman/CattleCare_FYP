@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Card, Col, Row } from 'react-bootstrap'
 import { Pie } from 'react-chartjs-2'
+
 const PieChart = ({ stateofPie }) => {
   return (
     <Pie

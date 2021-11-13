@@ -2,9 +2,7 @@
   height: 100%;
   width: 100%;
 }
-.dashboard_page_container {
-  height: 100vh;
-}
+
 .greeting_msg {
   color: #456468;
   width: fit-content;

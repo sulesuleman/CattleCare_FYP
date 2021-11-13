@@ -7,6 +7,7 @@
 }
 .dashboard_screens {
   flex: 1;
+  min-height:100vh;
   padding: 20px 30px;
   overflow-x: auto;
 }

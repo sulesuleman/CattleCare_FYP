@@ -1,17 +1,14 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
-import { Card, Col, Row, Nav, Table, Button, Progress } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import {
-  StatCard,
-  DoughnutChart,
-  LineChart,
-  BarChart,
-  PieChart,
-  Performance,
-  Traffic
+  BarChart, DoughnutChart,
+  LineChart, Performance, PieChart, StatCard, Traffic
 } from './components'
 import './index.css'
-var data = [30, 40, 35, 50, 49, 60, 70, 91, 125]
+
+// var data = [30, 40, 35, 50, 49, 60, 70, 91, 125];
+
 const FarmerPage = () => {
   const data = {
     labels: ['1', '2', '3', '4', '5', '6'],
@@ -57,6 +54,7 @@ const FarmerPage = () => {
     ]
   }
   const [greetingMsg, setGreetingMsg] = useState(() => {
+
     let today = new Date()
     let curHr = today.getHours()
     if (curHr < 12) {
@@ -67,6 +65,7 @@ const FarmerPage = () => {
       return 'good evening'
     }
   })
+
   return (
     <div className='dashboard_page_container'>
       <div>
@@ -89,7 +88,7 @@ const FarmerPage = () => {
         </p>
       </div>
       <div className=''>
-        <Row className='gx-3 gy-5 mt-5'>
+        <Row className='gx-3 gy-3 mt-3 mb-5'>
           <Col lg='6' xl='3'>
             <StatCard
               title={'Traffic'}
@@ -142,16 +141,16 @@ const FarmerPage = () => {
         <Row>
           <Col className='mb-5 mb-xl-0' xl='6'>
             <div style={{ height: '400px', width: '400px' }}>
-              <PieChart data={stateofPie} />
+              <PieChart stateofPie={stateofPie} />
             </div>
           </Col>
           <Col className='mb-5 mb-xl-0' xl='6'>
             <div style={{ height: '400px', width: '400px' }}>
-              <DoughnutChart data={stateofPie} />
+              <DoughnutChart stateofPie={stateofPie} />
             </div>
           </Col>
         </Row>
-        <Row className='mt-5'>
+        <Row className='mt-5 '>
           <Col className='mb-5 mb-xl-0' xl='12'>
             <Performance />
           </Col>

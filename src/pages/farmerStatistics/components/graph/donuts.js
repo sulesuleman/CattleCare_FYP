@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Card, Col, Row } from 'react-bootstrap'
 import { Doughnut } from 'react-chartjs-2'
+
 const DoughnutChart = ({ stateofPie }) => {
   return (
     <Doughnut

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
-const FarmerPage = ({ title, progress, increase, time, arrow }) => {
+
+const StatCard = ({ title, progress, increase, time, arrow }) => {
   return (
-    <Card className='card-stats mb-4 mb-xl-0'>
+    <Card className='card-stats'>
       <Card.Body>
         <Row>
           <div className='col'>
@@ -27,4 +28,4 @@ const FarmerPage = ({ title, progress, increase, time, arrow }) => {
     </Card>
   )
 }
-export default FarmerPage
+export default StatCard;
