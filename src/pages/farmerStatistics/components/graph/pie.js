@@ -8,6 +8,7 @@ const PieChart = ({ stateofPie }) => {
       options={{
         responsive: true,
         maintainAspectRatio: true,
+ 
         title: {
           display: true,
           text: 'Average Rainfall per month',
@@ -15,7 +16,8 @@ const PieChart = ({ stateofPie }) => {
         },
         legend: {
           display: true,
-          position: 'right'
+          position: 'right',
+          
         }
       }}
     />
