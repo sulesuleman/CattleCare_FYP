@@ -13,18 +13,24 @@ const LoginSignupPage = () => {
   return (
     <div className="login_signup_container">
       <Row>
-        <Col style={{ height: "100vh" }} xs={12} sm={12} lg={6} className="d-none d-lg-block">
+        <Col
+          style={{ height: "100vh" }}
+          xs={12}
+          sm={12}
+          lg={6}
+          className="d-none d-lg-block"
+        >
           <img
             style={{ objectFit: "cover" }}
             alt=""
             height="100%"
             width="100%"
             src={
-              "https://i1.wp.com/www.additudemag.com/wp-content/uploads/2019/10/GettyImages-858163552-e1571427251588.jpg"
+              "https://images.unsplash.com/photo-1560493676-04071c5f467b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YWdyaWN1bHR1cmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
             }
           />
         </Col>
-        <Col xs={12} sm={12}   lg={6}>
+        <Col xs={12} sm={12} lg={6}>
           {activeScreen === "login" ? (
             <LoginForm onScreenChange={() => handleScreenChange("register")} />
           ) : (

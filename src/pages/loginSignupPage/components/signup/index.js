@@ -187,7 +187,7 @@ const RegisterForm = ({ onScreenChange }) => {
                 <Button
                   size="large"
                   type="primary"
-                  className="full_expanded_btn"
+                  className="full_expanded_btn_green"
                   onClick={submitForm}
                   loading={isSubmitting}
                 >

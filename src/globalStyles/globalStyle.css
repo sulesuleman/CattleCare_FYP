@@ -94,3 +94,6 @@ input::placeholder {
   background-color: #2cb178 !important;
   border: 0 !important;
 }
+.btn_green:focus{
+  border: 0 !important;
+}

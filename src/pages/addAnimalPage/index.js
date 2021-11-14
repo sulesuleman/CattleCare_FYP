@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import { Button, Col, Row } from "react-bootstrap";
 import { addAnimalSchema } from "../../utils/validationSchema";
+import { PageHeading } from "../../globalComponents";
+
+
 
 const AddAnimalPage = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -20,6 +23,7 @@ const AddAnimalPage = () => {
 
   return (
     <div className="container-fluid">
+      <PageHeading text="Add Animals"/>
       <Formik
         //   onSubmit={handleSignupSubmit}
         validationSchema={addAnimalSchema}
@@ -35,7 +39,7 @@ const AddAnimalPage = () => {
         }}
       >
         {({ submitForm, touched, errors }) => (
-          <div>
+          <div className="mt-5">
             <Form>
               <div className="row">
                 <div className="col col-md-6">

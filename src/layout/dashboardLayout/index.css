@@ -4,10 +4,21 @@
   display: flex;
   background-color: #f7fcfa;
   overflow-x: auto;
+  position: relative;
 }
 .dashboard_screens {
   flex: 1;
-  min-height:100vh;
+  min-height: 100vh;
   padding: 20px 30px;
   overflow-x: auto;
+  position: absolute;
+  top: 0;
+  left: 250px;
+  right: 0;
+  bottom: 0;
+}
+@media (max-width: 991px) {
+  .dashboard_screens {
+    left: 0;
+  }
 }

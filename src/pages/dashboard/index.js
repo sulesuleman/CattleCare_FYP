@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { PageHeading } from "../../globalComponents";
 import { StatCard } from "./components";
 import "./index.css";
 
@@ -19,20 +20,7 @@ const DashboardPage = () => {
   return (
     <div className="dashboard_page_container">
       <div>
-        <div style={{ width: "fit-content" }}>
-          <h1 className="greeting_msg">{greetingMsg}!</h1>
-          <motion.div
-            style={{ height: 5, backgroundColor: "#2cb178" }}
-            initial={{ width: 0 }}
-            animate={{
-              width: "70%",
-              transition: {
-                duration: 1,
-                delay: 0.5,
-              },
-            }}
-          ></motion.div>
-        </div>
+        <PageHeading text={greetingMsg}/>
         <p className="stat_msg">
           Here is what's going on with your business today
         </p>

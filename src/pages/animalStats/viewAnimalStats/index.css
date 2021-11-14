@@ -1,0 +1,26 @@
+.animalstats_container {
+  height: 100%;
+  width: 100%;
+  padding: 20px 30px;
+}
+.animal_pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.statistics_container {
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+}
+.statistics_label {
+  font-size: 14px;
+  font-family: "Poppins-Semibold";
+}
+.statistics_value {
+  font-size: 14px;
+}
