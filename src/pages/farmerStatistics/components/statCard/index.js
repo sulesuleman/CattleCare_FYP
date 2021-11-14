@@ -7,7 +7,7 @@ const StatCard = ({ title, progress, increase, time, arrow }) => {
       <Card.Body>
         <Row>
           <div className='col'>
-            <Card.Title tag='h5' className='text-uppercase text-muted mb-0'>
+            <Card.Title tag='h5' className='text-uppercase text-muted mb-0 '>
               {title}
             </Card.Title>
             <span className='h2 font-weight-bold mb-0'>{progress}</span>

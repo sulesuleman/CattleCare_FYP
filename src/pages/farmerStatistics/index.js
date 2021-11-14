@@ -17,33 +17,27 @@ const FarmerPage = () => {
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)'
+        backgroundColor: '#2cb178',
+        borderColor: '#2cb178'
       }
     ]
   }
 
-  const options = {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
+
   const stateofPie = {
     labels: ['January', 'February', 'March', 'April', 'May'],
     datasets: [
       {
         label: 'Rainfall',
         backgroundColor: [
-          '#B21F00',
+          '#2cb178',
           '#C9DE00',
           '#2FDE00',
           '#00A6B4',
           '#6800B4'
         ],
         hoverBackgroundColor: [
-          '#501800',
+          '#2cb178',
           '#4B5000',
           '#175000',
           '#003350',

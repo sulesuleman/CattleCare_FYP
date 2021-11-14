@@ -11,8 +11,8 @@ const Traffic = ({ stateofPie }) => {
           </div>
           <div className='col text-right'>
             <Button
-              color='primary'
-              href='#pablo'
+               className="btn btn-success"
+              href=''
               onClick={e => e.preventDefault()}
               size='sm'
             >

@@ -11,7 +11,8 @@ const BarChart = ({ data }) => {
         title: {
           display: true,
           text: 'Average Rainfall per month',
-          fontSize: 20
+          fontSize: 20,
+          
         },
         legend: {
           display: true,
