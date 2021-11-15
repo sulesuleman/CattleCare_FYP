@@ -7,27 +7,25 @@ import { SideBar } from "../../globalComponents/sidebar";
 import "./index.css";
 
 const DashboardLayout = ({ children }) => {
-
   const location = useLocation();
-
 
   return (
     <>
       <div className="dashboard_layout">
         <SideBar />
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            variants={dashboardVariant}
-            initial={"initial"}
-            animate={"show"}
-            exit={"exit"}
-            key={location.pathname}
-            className={"dashboard_screens"}
-          >
-            <DashboardHeader />
-            <div>{children}</div>
-          </motion.div>
-        </AnimatePresence>
+        {/* <AnimatePresence exitBeforeEnter> */}
+        <div
+          variants={dashboardVariant}
+          // initial={"initial"}
+          // animate={"show"}
+          // exit={"exit"}
+          key={location.pathname}
+          className={"dashboard_screens"}
+        >
+          <DashboardHeader />
+          <div>{children}</div>
+        </div>
+        {/* </AnimatePresence> */}
       </div>
     </>
   );

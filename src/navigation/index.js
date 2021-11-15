@@ -7,22 +7,18 @@ import { useRoleAuth } from "../contexts";
 import { DashboardLayout, PageLayout } from "../layout";
 
 export const RouterConfig = () => {
-  const roleFromContext = useRoleAuth().role;
-  const authFromContext = useRoleAuth().authed;
-  const roleRef = useRef(roleFromContext);
-  const authRef = useRef(authFromContext);
+  const role = useRoleAuth().role;
+  const auth = useRoleAuth().authed;
+  // const roleRef = useRef(roleFromContext);
+  // const authRef = useRef(authFromContext);
 
+  // useEffect(() => {
+  //   roleRef.current = roleFromContext;
+  // }, [roleFromContext]);
 
-  useEffect(() => {
-    roleRef.current = roleFromContext;
-  }, [roleFromContext]);
-
-  useEffect(() => {
-    authRef.current = authFromContext;
-  }, [authFromContext]);
-
-
-  console.log(roleRef, authRef);
+  // useEffect(() => {
+  //   authRef.current = authFromContext;
+  // }, [authFromContext]);
 
   return (
     <Suspense
@@ -32,48 +28,42 @@ export const RouterConfig = () => {
         </div>
       }
     >
-      {
-        authRef?.current ?
-          roleRef.current == 'farmer' ?
-            <DashboardLayout>
-              <Switch>
-                {
-                  FarmerRoutes.map(({ Component, exact, path }, index) => (
-                    <Route path={path} exact={exact}>
-                      <Component />
-                    </Route>
-                  ))
-                }
-                <Redirect to='/dashboard' />
-              </Switch>
-            </DashboardLayout>
-            :
-            <DashboardLayout>
-              <Switch>
-                {
-                  AdminRoutes.map(({ Component, exact, path }, index) => (
-                    <Route path={path} exact={exact}>
-                      <Component />
-                    </Route>
-                  ))
-                }
-                <Redirect to='/farmer-statistics' />
-              </Switch>
-            </DashboardLayout>
-          :
-          <PageLayout>
+      {auth ? (
+        role === "farmer" ? (
+          <DashboardLayout>
             <Switch>
-              {
-                BasicRoutes.map(({ Component, path, exact }, index) => (
-                  <Route path={path} exact={exact}>
-                    <Component />
-                  </Route>
-                ))
-              }
-              <Redirect to='/' />
+              {FarmerRoutes.map(({ Component, exact, path }, index) => (
+                <Route path={path} exact={exact}>
+                  <Component />
+                </Route>
+              ))}
+              <Redirect to="/dashboard" />
             </Switch>
-          </PageLayout>
-      }
+          </DashboardLayout>
+        ) : (
+          <DashboardLayout>
+            <Switch>
+              {AdminRoutes.map(({ Component, exact, path }, index) => (
+                <Route path={path} exact={exact}>
+                  <Component />
+                </Route>
+              ))}
+              <Redirect to="/farmer-statistics" />
+            </Switch>
+          </DashboardLayout>
+        )
+      ) : (
+        <PageLayout>
+          <Switch>
+            {BasicRoutes.map(({ Component, path, exact }, index) => (
+              <Route path={path} exact={exact}>
+                <Component />
+              </Route>
+            ))}
+            <Redirect to="/" />
+          </Switch>
+        </PageLayout>
+      )}
     </Suspense>
   );
 };

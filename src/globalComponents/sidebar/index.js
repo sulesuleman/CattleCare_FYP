@@ -8,7 +8,11 @@ import { useRoleAuth } from "../../contexts";
 
 export const SideBar = () => {
   const history = useHistory();
-  const { role } = useRoleAuth();
+  const { role, logout } = useRoleAuth();
+
+  const handleLogout = async () => {
+    await logout();
+  };
 
   return (
     <div className="sidebar_container">
@@ -21,6 +25,9 @@ export const SideBar = () => {
           <MenuLink {...item} />
         ))}
       </div>
+      <Button onClick={handleLogout} className="btn_green">
+        Logout
+      </Button>
     </div>
   );
 };
