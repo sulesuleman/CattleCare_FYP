@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./index.css";
 import { LoginForm, RegisterForm } from "./components/index.js";
+import { useRoleAuth } from "../../contexts";
+import { Redirect } from "react-router-dom";
 
 const LoginSignupPage = () => {
   const [activeScreen, setActiveScreen] = useState("login");
+  const { authed, role } = useRoleAuth();
 
   const handleScreenChange = (screenName) => {
     setActiveScreen(screenName);
   };
 
-  return (
+  return authed ? (
+    <Redirect push to={role === "farmer" ? "/dashboard" : "/farmer-satistics"} />
+  ) : (
     <div className="login_signup_container">
       <Row>
         <Col

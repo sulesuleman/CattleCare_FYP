@@ -10,7 +10,7 @@ let VIEWANIMALSTATS = React.lazy(() =>
   import("../pages/animalStats/viewAnimalStats")
 );
 
-let routes = [
+export const BasicRoutes = [
   {
     path: "/login-signup",
     exact: true,
@@ -25,8 +25,11 @@ let routes = [
     Component: LANDINGPAGE,
     isProtected: false,
     isPartOfDashboard: false,
-    role: ['all'],
+    role: ["all"],
   },
+];
+
+export const FarmerRoutes = [
   {
     path: "/dashboard",
     exact: true,
@@ -59,6 +62,9 @@ let routes = [
     isPartOfDashboard: true,
     role: ["farmer"],
   },
+];
+
+export const AdminRoutes = [
   {
     path: "/farmer-statistics",
     exact: true,
@@ -68,5 +74,3 @@ let routes = [
     role: ["admin"],
   },
 ];
-
-export default routes;

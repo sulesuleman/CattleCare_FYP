@@ -9,7 +9,8 @@ const RoleAuthCheck = ({ children, ...rest }) => {
   const authFromContext = useRoleAuth().authed;
   const roleRef = useRef(roleFromContext);
   const authRef = useRef(authFromContext);
-  console.log("authRef", authFromContext);
+
+  console.log("rest", rest);
 
   useEffect(() => {
     roleRef.current = roleFromContext;
@@ -20,52 +21,17 @@ const RoleAuthCheck = ({ children, ...rest }) => {
   }, [authFromContext]);
 
   const getRedirect = (location) => {
-    if (authRef.current) {
-      if (location.pathname === "/login-signup") {
-        if (roleRef.current === "farmer") {
-          return (
-            <DashboardLayout>
-              <Redirect to="/dashboard" />
-            </DashboardLayout>
-          );
-        } else {
-          return (
-            <DashboardLayout>
-              <Redirect to="/farmer-satistics" />
-            </DashboardLayout>
-          );
-        }
-      } else {
-        if (rest.role.includes(roleRef.current)) {
-          return rest.isPartOfDashboard ? (
-            <DashboardLayout>{children}</DashboardLayout>
-          ) : (
-            <PageLayout>{children}</PageLayout>
-          );
-        } else {
-          if (roleRef.current === "farmer") {
-            return (
-              <DashboardLayout>
-                <Redirect to="/dashboard" />
-              </DashboardLayout>
-            );
-          } else {
-            return (
-              <DashboardLayout>
-                <Redirect to="/farmer-satistics" />
-              </DashboardLayout>
-            );
-          }
-        }
-      }
+    if (!authRef.current) {
+      return <Redirect to="/login-signup" />;
     } else {
-      return <Redirect to="/login-signup"  />;
+      return children;
     }
   };
 
   return (
     <Route
-      {...rest}
+      path={rest.path}
+      exact={rest.exact}
       render={
         ({ location }) => getRedirect(location)
         // authRef && location.pathname === "/login-signup" ? (
