@@ -5,6 +5,7 @@ import "./index.css";
 import CSVReader from "react-csv-reader";
 import { PageHeading } from "../../globalComponents";
 import { Button } from "react-bootstrap";
+import { motion } from "framer-motion";
 
 const AnimalStats = () => {
   const uploadRef = useRef();
@@ -45,7 +46,7 @@ const AnimalStats = () => {
             cssLabelClass="d-flex w-100 py-2"
             label="Bulk Upload Animals"
             accept=".csv"
-            // onFileLoaded={onFileUpload}
+          // onFileLoaded={onFileUpload}
           />
         </div>
         <Table className="table-borderless table-responsive">
@@ -64,7 +65,7 @@ const AnimalStats = () => {
           </thead>
           <tbody>
             <tr onClick={() => history.push("/animal-stats/1")}>
-              <td>Cow</td>
+              <motion.td whileHover={{ textDecoration: "underline" }} >Cow</motion.td>
               <td>Afghani</td>
               <td>3200 pkr</td>
               <td>Male</td>

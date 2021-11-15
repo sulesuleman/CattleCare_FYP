@@ -23,7 +23,7 @@ const AddAnimalPage = () => {
 
   return (
     <div className="container-fluid">
-      <PageHeading text="Add Animals"/>
+      <PageHeading text="Add Animals" />
       <Formik
         //   onSubmit={handleSignupSubmit}
         validationSchema={addAnimalSchema}
@@ -63,6 +63,31 @@ const AddAnimalPage = () => {
                     className={getInputClasses(touched, "age", errors)}
                   />
                   <ErrorMessage component="div" name="age" className="error" />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col col-md-6">
+                  <label className="mb-2">Cattle Id</label>
+                  <Field
+                    name="cattleId"
+                    className={getInputClasses(touched, "cattleId", errors)}
+                    placeholder="Animal Id"
+                  />
+                  <ErrorMessage
+                    component="div"
+                    name="cattleId"
+                    className="error"
+                  />
+                </div>
+                <div className="col col-md-6">
+                  <label className="mb-2">EarTag</label>
+                  <Field
+                    type="file"
+                    name="earTag"
+                    placeholder="Upload picture of Ear Tag"
+                    className={`${getInputClasses(touched, "earTag", errors)} d-flex justify-items-center`}
+                  />
+                  <ErrorMessage component="div" name="earTag" className="error" />
                 </div>
               </div>
               <div style={{ marginTop: 20 }}>

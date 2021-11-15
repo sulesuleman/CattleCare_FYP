@@ -1,24 +1,14 @@
-import React, { Suspense, useEffect, useRef } from "react";
+import React, { Suspense } from "react";
 import { Spinner } from "react-bootstrap";
-import { Switch } from "react-router-dom";
-import { AdminRoutes, BasicRoutes, FarmerRoutes } from "./routes";
 import { Redirect, Route } from "react-router";
+import { Switch } from "react-router-dom";
 import { useRoleAuth } from "../contexts";
 import { DashboardLayout, PageLayout } from "../layout";
+import { AdminRoutes, BasicRoutes, FarmerRoutes } from "./routes";
 
 export const RouterConfig = () => {
   const role = useRoleAuth().role;
   const auth = useRoleAuth().authed;
-  // const roleRef = useRef(roleFromContext);
-  // const authRef = useRef(authFromContext);
-
-  // useEffect(() => {
-  //   roleRef.current = roleFromContext;
-  // }, [roleFromContext]);
-
-  // useEffect(() => {
-  //   authRef.current = authFromContext;
-  // }, [authFromContext]);
 
   return (
     <Suspense

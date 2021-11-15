@@ -39,7 +39,7 @@ const ViewAnimalStats = () => {
       </div>
 
       <Row className="mt-5">
-        <Col style={{ minHeight: 200 }} xs={12} sm={3}>
+        <Col style={{ minHeight: 200 }} xs={12} lg={3}>
           <img
             className="animal_pic"
             alt=""
@@ -48,21 +48,21 @@ const ViewAnimalStats = () => {
             }
           />
         </Col>
-        <Col className="statistics_container" xs={12} sm={9}>
+        <Col className="statistics_container" xs={12} lg={9}>
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Weight</Col>
                 <Col className="statistics_value">94kg</Col>
               </Row>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Age</Col>
                 <Col className="statistics_value">12 years</Col>
               </Row>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Sex</Col>
                 <Col className="statistics_value">Male</Col>
@@ -70,19 +70,19 @@ const ViewAnimalStats = () => {
             </Col>
           </Row>
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Breed Type</Col>
                 <Col className="statistics_value">N/a</Col>
               </Row>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Cattle Type</Col>
                 <Col className="statistics_value">Cow</Col>
               </Row>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Price</Col>
                 <Col className="statistics_value">42000 pkr</Col>
@@ -90,13 +90,13 @@ const ViewAnimalStats = () => {
             </Col>
           </Row>
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Anticipation Date</Col>
                 <Col className="statistics_value">22/12/21</Col>
               </Row>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Child Count</Col>
                 <Col className="statistics_value">2</Col>
