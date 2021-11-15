@@ -8,6 +8,8 @@ const LineChart = ({ data }) => {
       options={{
         responsive: true,
         maintainAspectRatio: true,
+        color:"#2cb178",
+        backgroundColor:"#2cb178",
         title: {
           display: true,
           text: 'Average Rainfall per month',
@@ -15,7 +17,8 @@ const LineChart = ({ data }) => {
         },
         legend: {
           display: true,
-          position: 'left'
+          position: 'left',
+        
         }
       }}
     />
