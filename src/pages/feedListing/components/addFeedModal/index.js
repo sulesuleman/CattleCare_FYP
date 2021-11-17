@@ -1,29 +1,29 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { Modal, Button, Row, Col } from "react-bootstrap";
-import { getInputClasses } from "../../../../../assets/images/helpers";
-import { PageHeading } from "../../../../../globalComponents";
-import { addMedicalRecordSchema } from "../../../../../utils/validationSchema";
+import { Button, Col, Modal, Row } from "react-bootstrap";
+import { getInputClasses } from "../../../../assets/images/helpers";
+import { PageHeading } from "../../../../globalComponents";
+import { addFeedSchema } from "../../../../utils/validationSchema";
 import "./index.css";
 
-const AddRecordModal = ({ show, handleClose }) => {
+const AddFeedModal = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
-        <PageHeading fontSize={22} text="Add Medical Record" />
+          <PageHeading fontSize={22} text="Add Feed" />
       </Modal.Header>
       <Modal.Body className="add_record_body">
         <div>
           <Formik
             //   onSubmit={handleSignupSubmit}
-            validationSchema={addMedicalRecordSchema}
+            validationSchema={addFeedSchema}
             initialValues={{
-              vaccinationType: "",
-              vaccinationDate: "",
-              vaccinationPeriod: "",
-              diseaseType: "",
-              diseaseDate: "",
-              recoverStatus: "",
+              feedName: "",
+              feedType: "",
+              feedBrand: "",
+              quantity: "",
+              price: "",
+              date: "",
             }}
           >
             {(formik) => {
@@ -33,29 +33,29 @@ const AddRecordModal = ({ show, handleClose }) => {
                   <Form>
                     <div className="row gy-2">
                       <div className="col-xs-12 col-md-6">
-                        <label className="mb-2">Vaccination Type</label>
+                        <label className="mb-2">Feed Name</label>
                         <Field
-                          name="vaccinationType"
-                          className={getInputClasses(formik, "vaccinationType")}
-                          placeholder="eg Phizer"
+                          name="feedName"
+                          className={getInputClasses(formik, "feedName")}
+                          placeholder="eg fauji fertilizers"
                         />
                         <ErrorMessage
                           component="div"
-                          name="vaccinationType"
+                          name="feedName"
                           className="error"
                         />
                       </div>
                       <div className="col col-xs-12 col-md-6">
-                        <label className="mb-2">Vaccination Date</label>
+                        <label className="mb-2">Feed Type</label>
                         <Field
-                          name="vaccinationDate"
-                          type="date"
-                          placeholder="Enter Date"
-                          className={getInputClasses(formik, "vaccinationDate")}
+                          name="feedType"
+                          type="text"
+                          placeholder="Enter Feed Type"
+                          className={getInputClasses(formik, "feedType")}
                         />
                         <ErrorMessage
                           component="div"
-                          name="vaccinationDate"
+                          name="feedType"
                           className="error"
                         />
                       </div>
@@ -63,32 +63,29 @@ const AddRecordModal = ({ show, handleClose }) => {
                     <div style={{ marginTop: 20 }}>
                       <Row className="gy-2">
                         <Col xs={12} sm={6}>
-                          <label className="mb-2">Disease Type</label>
+                          <label className="mb-2">Feed Brand</label>
                           <Field
-                            name="diseaseType"
-                            placeholder="eg Ankle injury"
-                            className={getInputClasses(formik, "diseaseType")}
+                            name="feedBrand"
+                            placeholder="eg Fertilizers"
+                            className={getInputClasses(formik, "feedBrand")}
                           />
                           <ErrorMessage
                             component="div"
-                            name="diseaseType"
+                            name="feedBrand"
                             className="error"
                           />
                         </Col>
                         <Col xs={12} sm={6}>
-                          <label className="mb-2">Vaccination Period</label>
+                          <label className="mb-2">Quantity</label>
                           <Field
-                            name="vaccinationPeriod"
-                            placeholder="Please enter period"
-                            type="text"
-                            className={getInputClasses(
-                              formik,
-                              "vaccinationPeriod"
-                            )}
+                            name="quantity"
+                            placeholder="Please enter quantity"
+                            type="number"
+                            className={getInputClasses(formik, "quantity")}
                           />
                           <ErrorMessage
                             component="div"
-                            name="vaccinationPeriod"
+                            name="quantity"
                             className="error"
                           />
                         </Col>
@@ -97,31 +94,31 @@ const AddRecordModal = ({ show, handleClose }) => {
                     <div style={{ marginTop: 20 }}>
                       <Row className="gy-2">
                         <Col xs={12} sm={6}>
-                          <label>Disease Date</label>
+                          <label>price</label>
                           <Field
-                            name="diseaseDate"
-                            placeholder="Please Enter Sex"
-                            type="text"
-                            className={getInputClasses(formik, "diseaseDate")}
+                            name="price"
+                            placeholder="Please Enter price"
+                            type="number"
+                            className={getInputClasses(formik, "price")}
                           />
                           <ErrorMessage
                             component="div"
-                            name="diseaseDate"
+                            name="price"
                             className="error"
                           />
                         </Col>
                         <Col xs={12} sm={6}>
                           {" "}
-                          <label>Recover Status</label>
+                          <label>Date</label>
                           <Field
-                            name="recoverStatus"
+                            name="date"
                             placeholder="Please Enter status"
-                            type="text"
-                            className={getInputClasses(formik, "recoverStatus")}
+                            type="date"
+                            className={getInputClasses(formik, "date")}
                           />
                           <ErrorMessage
                             component="div"
-                            name="recoverStatus"
+                            name="date"
                             className="error"
                           />
                         </Col>
@@ -146,4 +143,4 @@ const AddRecordModal = ({ show, handleClose }) => {
   );
 };
 
-export default AddRecordModal;
+export default AddFeedModal;

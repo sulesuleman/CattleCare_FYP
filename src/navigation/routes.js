@@ -9,6 +9,7 @@ let FARMERPAGE = React.lazy(() => import("../pages/farmerStatistics"));
 let VIEWANIMALSTATS = React.lazy(() =>
   import("../pages/animalStats/viewAnimalStats")
 );
+let FEEDLISTING = React.lazy(() => import("../pages/feedListing"));
 
 export const BasicRoutes = [
   {
@@ -58,6 +59,14 @@ export const FarmerRoutes = [
     path: "/animal-stats/:id",
     exact: true,
     Component: VIEWANIMALSTATS,
+    isProtected: true,
+    isPartOfDashboard: true,
+    role: ["farmer"],
+  },
+  {
+    path: "/manage-feeds",
+    exact: true,
+    Component: FEEDLISTING,
     isProtected: true,
     isPartOfDashboard: true,
     role: ["farmer"],

@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+  .add_record_body {
+    height: 70vh;
+    overflow-y: auto;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Button } from "react-bootstrap";
 import { PageHeading } from "../../../globalComponents";
-import { AddRecordModal } from "./components";
+import { AddRecordModal, MedicalHistoryTable } from "./components";
 import "./index.css";
 
 const ViewAnimalStats = () => {
@@ -105,6 +105,13 @@ const ViewAnimalStats = () => {
           </Row>
         </Col>
       </Row>
+      <div>
+        <div className="mt-5 mb-5">
+          <PageHeading text="Medical History" />
+        </div>
+
+        <MedicalHistoryTable />
+      </div>
     </div>
   );
 };

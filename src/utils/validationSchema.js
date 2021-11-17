@@ -63,3 +63,12 @@ export const LoginSchema = Yup.object().shape({
   email: Email,
   password: Password,
 });
+
+export const addFeedSchema = Yup.object().shape({
+  feedName: Yup.string().required("Feed name is a required field"),
+  feedType: Yup.string().required("Feed Type is a required field"),
+  feedBrand: Yup.string().required("Feed Brand is a required field"),
+  quantity: Yup.number().required("Quantity is a required field"),
+  price: Yup.number().required("Price is a required field"),
+  date: Yup.date().required("Date is a required field"),
+});

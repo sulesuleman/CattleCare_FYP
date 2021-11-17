@@ -22,7 +22,7 @@
   margin: auto;
 }
 
-.dashboard_links>div {
+.dashboard_links > div {
   margin-bottom: 10px;
 }
 
@@ -34,7 +34,7 @@
 */
 }
 
-.dashboard_links>div:hover .hovered_green_line {
+.dashboard_links > div:hover .hovered_green_line {
   width: 70%;
 }
 
@@ -42,8 +42,7 @@
   margin-right: 10px;
 }
 
-
-.dashboard_links>div:hover svg path {
+.dashboard_links > div:hover svg path {
   fill: #2cb178;
 }
 
@@ -65,10 +64,25 @@
 .dashboard_links a:hover {
   color: #2cb178;
 }
-
-@media (max-width: 991px) {
-  
-  .sidebar_container {
-    display: none;
-  }
+.mobile_sidebar_container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  overflow-y: hidden;
+}
+.hamburger_container {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  z-index: 9;
+}
+.dull_black_overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }

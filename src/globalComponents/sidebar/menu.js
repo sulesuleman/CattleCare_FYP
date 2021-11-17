@@ -71,8 +71,8 @@ const menuItems = (currentRole) => {
     },
     {
       role: "farmer",
-      label: "Add Feeds",
-      to: "/add-feed",
+      label: "Manage Feeds",
+      to: "/manage-feeds",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

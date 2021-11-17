@@ -97,3 +97,21 @@ input::placeholder {
 .btn_green:focus{
   border: 0 !important;
 }
+
+/* table global style */
+
+ thead {
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+ tbody td {
+  padding: 20px 6px;
+
+}
+
+ tbody tr {
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 0 5pt 0.5pt rgba(211, 211, 211, 0.4);
+}
