@@ -22,3 +22,9 @@
     left: 0;
   }
 }
+
+@media (max-width: 425px) {
+  .dashboard_screens {
+    padding: 20px 10px;
+  }
+}

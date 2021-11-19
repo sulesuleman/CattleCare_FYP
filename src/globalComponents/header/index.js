@@ -12,7 +12,7 @@ const Header = () => {
         <div className="d-flex justify-content-between align-items-center h-100">
           <div className="d-flex align-items-center header-logo-desc">
             <img src={LOGO} className="header_logo" alt="" />
-            <p className="px-3">Cattle Care</p>
+            <p className="px-3 d-none d-sm-block">Cattle Care</p>
           </div>
           <div className="dashboard_links m-0 flex-row align-items-center">
             <div className="d-flex align-items-center px-4 m-0">

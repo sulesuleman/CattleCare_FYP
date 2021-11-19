@@ -3,11 +3,11 @@ import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import { Button, Col, Row } from "react-bootstrap";
 import { addAnimalSchema } from "../../utils/validationSchema";
 import { PageHeading } from "../../globalComponents";
-
-
+import { UploadPicture } from "./components";
 
 const AddAnimalPage = () => {
   const [isSubmitting, setSubmitting] = useState(false);
+  const [animalImage, setAnimalImage] = useState();
 
   const getInputClasses = (touched, fieldname, errors) => {
     if (touched[fieldname] && errors[fieldname]) {
@@ -41,8 +41,43 @@ const AddAnimalPage = () => {
         {({ submitForm, touched, errors }) => (
           <div className="mt-5">
             <Form>
-              <div className="row">
-                <div className="col col-md-6">
+              <UploadPicture onChange={(img) => setAnimalImage(img)} />
+              <div className="mt-2 row gy-3">
+                <div className="col-xs-12 col-sm-6">
+                  <label className="mb-2">Cattle Id</label>
+                  <Field
+                    name="cattleId"
+                    type="text"
+                    className={getInputClasses(touched, "cattleId", errors)}
+                    placeholder="Animal Id"
+                  />
+                  <ErrorMessage
+                    component="div"
+                    name="cattleId"
+                    className="error"
+                  />
+                </div>
+                <div className="col-xs-12 col-sm-6">
+                  <label className="mb-2">EarTag</label>
+                  <Field
+                    type="file"
+                    name="earTag"
+                    placeholder="Upload picture of Ear Tag"
+                    className={`${getInputClasses(
+                      touched,
+                      "earTag",
+                      errors
+                    )} d-flex justify-items-center`}
+                  />
+                  <ErrorMessage
+                    component="div"
+                    name="earTag"
+                    className="error"
+                  />
+                </div>
+              </div>
+              <div className="row gy-3">
+                <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">Weight</label>
                   <Field
                     name="weight"
@@ -55,7 +90,7 @@ const AddAnimalPage = () => {
                     className="error"
                   />
                 </div>
-                <div className="col col-md-6">
+                <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">Age</label>
                   <Field
                     name="age"
@@ -65,34 +100,10 @@ const AddAnimalPage = () => {
                   <ErrorMessage component="div" name="age" className="error" />
                 </div>
               </div>
-              <div className="row">
-                <div className="col col-md-6">
-                  <label className="mb-2">Cattle Id</label>
-                  <Field
-                    name="cattleId"
-                    className={getInputClasses(touched, "cattleId", errors)}
-                    placeholder="Animal Id"
-                  />
-                  <ErrorMessage
-                    component="div"
-                    name="cattleId"
-                    className="error"
-                  />
-                </div>
-                <div className="col col-md-6">
-                  <label className="mb-2">EarTag</label>
-                  <Field
-                    type="file"
-                    name="earTag"
-                    placeholder="Upload picture of Ear Tag"
-                    className={`${getInputClasses(touched, "earTag", errors)} d-flex justify-items-center`}
-                  />
-                  <ErrorMessage component="div" name="earTag" className="error" />
-                </div>
-              </div>
-              <div style={{ marginTop: 20 }}>
-                <Row>
-                  <Col>
+
+              <div className="mt-2">
+                <Row className="gy-3">
+                  <Col xs={12} sm={6}>
                     <label className="mb-2">Breed Type</label>
                     <Field
                       name="breedType"
@@ -106,7 +117,7 @@ const AddAnimalPage = () => {
                       className="error"
                     />
                   </Col>
-                  <Col>
+                  <Col xs={12} sm={6}>
                     <label className="mb-2">Cattle Type</label>
                     <Field
                       name="cattleType"
@@ -122,10 +133,10 @@ const AddAnimalPage = () => {
                   </Col>
                 </Row>
               </div>
-              <div style={{ marginTop: 20 }}>
-                <Row>
-                  <Col>
-                    <label >Sex</label>
+              <div className="mt-2">
+                <Row className="gy-3">
+                  <Col xs={12} sm={6}>
+                    <label>Sex</label>
                     <Field
                       name="sex"
                       placeholder="Please Enter Sex"
@@ -138,7 +149,7 @@ const AddAnimalPage = () => {
                       className="error"
                     />
                   </Col>
-                  <Col>
+                  <Col xs={12} sm={6}>
                     {" "}
                     <label>Price</label>
                     <Field
@@ -155,9 +166,9 @@ const AddAnimalPage = () => {
                   </Col>
                 </Row>
               </div>
-              <div style={{ marginTop: 20 }}>
-                <Row>
-                  <Col>
+              <div className="mt-2">
+                <Row className="gy-3">
+                  <Col xs={12} sm={6}>
                     <label className="mb-2">Anticipation Date</label>
                     <Field
                       name="anticipationDate"
@@ -175,7 +186,7 @@ const AddAnimalPage = () => {
                       className="error"
                     />
                   </Col>
-                  <Col>
+                  <Col xs={12} sm={6}>
                     <label className="mb-2">Child Count</label>
                     <Field
                       name="childCount"

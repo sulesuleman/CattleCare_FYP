@@ -13,7 +13,7 @@ const MedicalHistoryTable = () => {
             <th style={{ minWidth: "180px" }}>Disease Date</th>
             <th style={{ minWidth: "130px" }}>Disease Type</th>
             <th style={{ minWidth: "130px" }}>Recover Status</th>
-            <th style={{ minWidth: "130px" }}>Action</th>
+            <th style={{ minWidth: "100px" }}>Action</th>
           </tr>
         </thead>
         <tbody>

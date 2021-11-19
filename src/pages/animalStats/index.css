@@ -9,21 +9,6 @@
   fill: #2cb178;
 }
 
-.table-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 0px 3px;
-  margin: 20px 0px;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  overflow-x: auto;
-}
-
 .animal_stats_container thead {
   white-space: nowrap;
   font-size: 16px;

@@ -34,7 +34,7 @@ const FeedListing = () => {
               <th style={{ minWidth: "130px" }}>Price</th>
               <th style={{ minWidth: "130px" }}>Feed Type</th>
               <th style={{ minWidth: "180px" }}>Date</th>
-              <th style={{ minWidth: "180px" }}>Actions</th>
+              <th style={{ minWidth: "100px" }}>Actions</th>
             </tr>
           </thead>
           <tbody>

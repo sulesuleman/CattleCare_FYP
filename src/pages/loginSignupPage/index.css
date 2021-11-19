@@ -7,3 +7,10 @@
 .login_form {
   max-width: 400px;
 }
+
+
+@media screen and (max-width : 470px) {
+  .login_signup_form_container{
+    padding: 30px 20px;
+  }
+}

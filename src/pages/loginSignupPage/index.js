@@ -17,7 +17,7 @@ const LoginSignupPage = () => {
     <Redirect push to={role === "farmer" ? "/dashboard" : "/farmer-satistics"} />
   ) : (
     <div className="login_signup_container">
-      <Row>
+      <Row className="g-0">
         <Col
           style={{ height: "100vh" }}
           xs={12}

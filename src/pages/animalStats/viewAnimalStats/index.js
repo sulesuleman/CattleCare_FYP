@@ -106,7 +106,7 @@ const ViewAnimalStats = () => {
         </Col>
       </Row>
       <div>
-        <div className="mt-5 mb-5">
+        <div className="my-5">
           <PageHeading text="Medical History" />
         </div>
           <MedicalHistoryTable />
