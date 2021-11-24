@@ -1,11 +1,15 @@
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
-let baseUrl = process.env.BASE_URL; // global
+const baseUrl = process.env.BASE_URL; // global
+
+console.log(process.env.BASE_URL);
+
 
 // get request
 const getRequest = async (endpoint) => {
   try {
-    let response = await axios.get(`${baseUrl}/${endpoint}`);
+    let response = await axiosInstance.get(`/${endpoint}`);
     return response;
   } catch (error) {
     console.error(error);
@@ -16,7 +20,7 @@ const getRequest = async (endpoint) => {
 
 const postRequest = async (endpoint, body) => {
   try {
-    let response = await axios.post(`${baseUrl}/${endpoint}`, body);
+    let response = await axiosInstance.post(`/${endpoint}`, body);
     return response;
   } catch (error) {
     console.error(error);

@@ -2,12 +2,10 @@ import * as Yup from "yup";
 
 const Email = Yup.string()
   .email("Wrong email format")
-  .min(3, "Minimum 3 symbols")
-  .max(50, "Maximum 50 symbols")
   .required("Email is a required field");
 
 const Password = Yup.string()
-  .min(8, "Minimum 8 symbols")
+  .min(6, "Minimum 6 symbols")
   .required("Password is a required field");
 
 export const SignupSchema = Yup.object().shape({
@@ -22,12 +20,12 @@ export const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Minimum 3 symbols")
     .required("Name is a required field"),
-  phoneNumber: Yup.string()
+  phoneNo: Yup.string()
     .min(11, "Minimum 11 symbols")
     .required("Phone number is a required field"),
   address: Yup.string()
     .min(5, "Minimum 5 symbols")
-    .max(300, "Maximum 300 symbols")
+    .max(100, "Maximum 100 symbols")
     .required("Address is a required field"),
 });
 

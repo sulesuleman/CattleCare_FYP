@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { LoginSchema } from "../../../../utils/validationSchema";
 import { useRoleAuth } from "../../../../contexts";
+import { toast } from 'react-toastify';
 
 const LoginForm = ({ onScreenChange }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,33 +18,32 @@ const LoginForm = ({ onScreenChange }) => {
     // try {
     setIsSubmitting(true);
     const { email, password } = values;
-    if (email === "farmer@gmail.com" && password === "1234567890") {
+    if (email === "admin@gmail.com" && password === "1234567890") {
       let user = {
         name: "lorem empsum",
       };
-      let role = "farmer";
-      login(user, role).then(() => history.replace("/dashboard"));
+      let role = "s";
+      await login(user, 'admin');
     }
-    else if (email === "admin@gmail.com" && password === "1234567890") {
-      let user = {
-        name: "lorem empsum",
-      };
-      let role = "admin";
-      login(user, role).then(() => history.replace("/farmer-statistics"));
+    else {
+      try {
+        setIsSubmitting(true);
+        const {
+          data: { data, error, message },
+        } = await postRequest(postSigninForm, { email, password });
+        setIsSubmitting(false);
+        if (!error) {
+          await login(data, data.isAdmin ? 'admin' : 'farmer')
+        }
+        else {
+          toast.warn(message);
+        }
+      } catch (error) {
+        setIsSubmitting(false);
+
+        toast.error("Something went wrong")
+      }
     }
-    //   const {
-    //     data: { token, user },
-    //   } = await postRequest(postSigninForm, { ...values });
-    //   setIsSubmitting(false);
-    //   if (user) {
-    //     asyncLocalStorage
-    //       .setItem("token", JSON.stringify(token))
-    //       .then((value) => history.push("/"));
-    //   }
-    // } catch (error) {
-    //   setIsSubmitting(false);
-    //   console.error(error);
-    // }
   };
 
   const getInputClasses = (touched, fieldname, errors) => {
@@ -128,9 +128,6 @@ const LoginForm = ({ onScreenChange }) => {
                   type="primary"
                   className="full_expanded_btn_green"
                   loading={isSubmitting}
-                  onClick={() => {
-                    submitForm();
-                  }}
                 >
                   Start Now
                 </Button>

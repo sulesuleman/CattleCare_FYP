@@ -5,7 +5,7 @@ const roleAuthContext = createContext();
 
 function useRoleAuth() {
   const [authed, setAuthed] = useState(() => {
-    let token = JSON.parse(localStorage.getItem("farmObj"));
+    let token = JSON.parse(localStorage.getItem("cattleCare"))?.token;
     if (token) {
       return true;
     } else {
@@ -13,18 +13,19 @@ function useRoleAuth() {
     }
   });
   const [role, setRole] = useState(() => {
-    let token = JSON.parse(localStorage.getItem("farmObj"));
-    if (token) {
-      return token.role;
+    let isAdmin = JSON.parse(localStorage.getItem("cattleCare"))?.isAdmin;
+    if (typeof isAdmin === 'undefined') return 'all';
+    else if (isAdmin) {
+      return 'admin';
     } else {
-      return "all";
+      return "farmer";
     }
   });
   const [user, setUser] = useState(undefined);
 
   const logout = () => {
     return new Promise((res) => {
-      localStorage.removeItem("farmObj");
+      localStorage.removeItem("cattleCare");
       setAuthed(false);
       setRole("");
       setUser(undefined);
@@ -34,7 +35,7 @@ function useRoleAuth() {
 
   const login = (user, role) => {
     return new Promise((res) => {
-      localStorage.setItem("farmObj", JSON.stringify({ user, role }));
+      localStorage.setItem("cattleCare", JSON.stringify({ user, role }));
       setAuthed(true);
       setUser(user);
       setRole(role);
