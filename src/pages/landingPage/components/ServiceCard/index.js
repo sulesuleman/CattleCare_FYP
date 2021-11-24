@@ -17,11 +17,8 @@ const ServiceCard = ({ heading, description, imgSrc }) => {
           <motion.img src={imgSrc} variants={imgVariants} />
         </motion.div>
         <div className="service_description_container">
-          <h4>Fresh Fruit</h4>
-          <p style={{ color: textGreyColor }}>
-            nically grown crops tend use natural fertilizers like manure to
-            improve growth to plant . Animals raised organically are
-          </p>
+          <h4>{heading}</h4>
+          <p style={{ color: textGreyColor }}>{description}</p>
         </div>
       </motion.div>
     </Col>
@@ -33,9 +30,13 @@ const ServiceCard = ({ heading, description, imgSrc }) => {
 const imgVariants = {
   rest: {
     scale: 1,
+    transition: {
+      duration: 1,
+      easing: "easeInOut",
+    }
   },
   hover: {
-    scale: 1.5,
+    scale: 1.1,
     transition: {
       duration: 1,
       easing: "easeInOut",

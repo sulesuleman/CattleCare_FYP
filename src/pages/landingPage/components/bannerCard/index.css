@@ -7,9 +7,9 @@
   align-items: center;
   flex-direction: column;
   padding: 20px;
-  justify-content: center;
 }
 .banner_card_container h2 {
+  margin-top: 50px;
   font-family: "Poppins-Bold" !important;
 }
 .banner_card_container p {

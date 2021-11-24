@@ -1,7 +1,7 @@
 .stat_card {
   border-radius: 10px;
   border: 4px solid #4c6a6e;
-  height: 150px;
+  min-height: 150px;
   padding: 10px;
   display: flex;
   flex-direction: column;

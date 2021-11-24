@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { PageHeading } from "../../globalComponents";
+import { ExpenseGraph, FeedGraph, YieldGraph } from "./charts";
 import { StatCard } from "./components";
 import "./index.css";
 
@@ -20,7 +21,7 @@ const DashboardPage = () => {
   return (
     <div className="dashboard_page_container">
       <div>
-        <PageHeading text={greetingMsg}/>
+        <PageHeading text={greetingMsg} />
         <p className="stat_msg">
           Here is what's going on with your business today
         </p>
@@ -35,7 +36,7 @@ const DashboardPage = () => {
               txtColor="white"
             />
           </Col>
-          <Col xs={12} md={6} lg={4} >
+          <Col xs={12} md={6} lg={4}>
             <StatCard
               bgColor="#E6F6EF"
               headingName="Total Animals"
@@ -50,6 +51,33 @@ const DashboardPage = () => {
               count="24"
               txtColor="white"
             />
+          </Col>
+          <Col xs={12} md={6}>
+            <StatCard
+              headingName="Yield Growth"
+              txtColor="#456468"
+              bgColor="#E6F6EF"
+            >
+              <YieldGraph />
+            </StatCard>
+          </Col>
+          <Col xs={12} md={6}>
+            <StatCard
+              headingName="Expense Stats"
+              txtColor="#456468"
+              bgColor="#E6F6EF"
+            >
+              <ExpenseGraph />
+            </StatCard>
+          </Col>
+          <Col xs={12} md={6}>
+            <StatCard
+              headingName="Feed Stats"
+              txtColor="#456468"
+              bgColor="#E6F6EF"
+            >
+              <FeedGraph />
+            </StatCard>
           </Col>
         </Row>
       </div>

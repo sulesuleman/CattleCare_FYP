@@ -6,11 +6,14 @@ import { PageHeading } from "../../../../globalComponents";
 import { addFeedSchema } from "../../../../utils/validationSchema";
 import "./index.css";
 
-const AddFeedModal = ({ show, handleClose }) => {
+const AddFeedModal = ({ show, handleClose, mode = "add" }) => {
   return (
     <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
-          <PageHeading fontSize={22} text="Add Feed" />
+        <PageHeading
+          fontSize={22}
+          text={`${mode === "add" ? "Add" : "Edit"} Feed`}
+        />
       </Modal.Header>
       <Modal.Body className="add_record_body">
         <div>

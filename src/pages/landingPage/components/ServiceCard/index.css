@@ -12,6 +12,7 @@
 }
 .service_description_container {
   padding: 20px;
+  min-height:150px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .service_description_container h4{
@@ -20,5 +21,4 @@
 .service_description_container p {
   font-family: 'Poppins-Light' !important;
   font-size: 16px;
-
 }

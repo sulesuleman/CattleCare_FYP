@@ -6,7 +6,7 @@ import "./index.css";
 class BannerCarousel extends Component {
   render() {
     const settings = {
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
@@ -34,34 +34,22 @@ class BannerCarousel extends Component {
       <div>
         <Slider {...settings}>
           <BannerCard
-            step={"Step 4"}
-            description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"
+            step={"Step 1"}
+            description="Register your farm on Cattle Care by clicking Login/SignUp button in top-right corner."
+          />
+
+          <BannerCard
+            step={"Step 2"}
+            description="Click Register button (Note: This step is for new users only, existing users can Login directly by entering their username and password on this page)"
+          />
+          <BannerCard
+            step={"Step 3"}
+            description="Fill all details in the form to create your account and click SignUp button."
           />
 
           <BannerCard
             step={"Step 4"}
-            description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"
-          />
-          <BannerCard
-            step={"Step 4"}
-            description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"
-          />
-
-          <BannerCard
-            step={"Step 4"}
-            description="Lorem Ipsum is simply dummy text of the printing and type setting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-        scramble"
+            description="Buy a subscription pack and enjoy our services."
           />
         </Slider>
       </div>

@@ -6,11 +6,14 @@ import { PageHeading } from "../../../../../globalComponents";
 import { addMedicalRecordSchema } from "../../../../../utils/validationSchema";
 import "./index.css";
 
-const AddRecordModal = ({ show, handleClose }) => {
+const AddRecordModal = ({ show, handleClose, mode = "add" }) => {
   return (
     <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
-        <PageHeading fontSize={22} text="Add Medical Record" />
+        <PageHeading
+          fontSize={22}
+          text={`${mode === "add" ? "Add" : "Edit"} Medical Record`}
+        />
       </Modal.Header>
       <Modal.Body className="add_record_body">
         <div>
