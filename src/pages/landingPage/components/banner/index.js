@@ -39,9 +39,9 @@ const Banner = () => (
     <Container>
       <div className="banner_carousel">
         <div className="carousel_title">
-        <p className="subHeading">Working Process</p>
-        <h1 className="heading mt-2 mb-3">How Does We Work</h1>
-          </div>
+          <p className="subHeading">Working Process</p>
+          <h1 className="heading mt-2 mb-3">How Does We Work</h1>
+        </div>
         <BannerCarousel />
       </div>
     </Container>

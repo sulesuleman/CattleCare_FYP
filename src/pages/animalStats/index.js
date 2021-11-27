@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useHistory } from "react-router";
 import "./index.css";
@@ -6,13 +6,47 @@ import CSVReader from "react-csv-reader";
 import { PageHeading } from "../../globalComponents";
 import { Button } from "react-bootstrap";
 import { motion } from "framer-motion";
+import EditAnimalModal from "./editAnimalModal";
+import Swal from "sweetalert2";
 
 const AnimalStats = () => {
   const uploadRef = useRef();
   const history = useHistory();
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+
+  const handleEdit = (e) => {
+    e.stopPropagation();
+    setIsEditModalVisible(true);
+  };
+
+  const getConfirmation = (e) => {
+    e.stopPropagation();
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      html: `<p class='text-danger'>You won't be able to revert this!
+      </p>`,
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'w-100   btn btn-success',
+        cancelButton:  'w-100  mt-1  btn btn-danger'
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // onConfirmAction();
+      }
+    });
+  };
+
   return (
     <div className="animal_stats_container">
       <PageHeading text="Animals" />
+      <EditAnimalModal
+        show={isEditModalVisible}
+        handleClose={() => setIsEditModalVisible(false)}
+      />
       <div className="d-flex align-items-end flex-row-reverse mb-5 p-1">
         <Button
           type="primary"
@@ -46,7 +80,7 @@ const AnimalStats = () => {
             cssLabelClass="d-flex w-100 py-2"
             label="Bulk Upload Animals"
             accept=".csv"
-          // onFileLoaded={onFileUpload}
+            // onFileLoaded={onFileUpload}
           />
         </div>
         <Table className="table-borderless table-responsive">
@@ -65,7 +99,9 @@ const AnimalStats = () => {
           </thead>
           <tbody>
             <tr onClick={() => history.push("/animal-stats/1")}>
-              <motion.td whileHover={{ textDecoration: "underline" }} >Cow</motion.td>
+              <motion.td whileHover={{ textDecoration: "underline" }}>
+                Cow
+              </motion.td>
               <td>Afghani</td>
               <td>3200 pkr</td>
               <td>Male</td>
@@ -76,16 +112,18 @@ const AnimalStats = () => {
               <td style={{ verticalAlign: "middle" }}>
                 <div className="table_actions_container">
                   <svg
+                    onClick={handleEdit}
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
                     fill="currentColor"
                     className="bi bi-pencil"
                     viewBox="0 0 16 16"
-                    >
+                  >
                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                   </svg>
                   <svg
+                    onClick={getConfirmation}
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     style={{ marginLeft: 20 }}
