@@ -5,7 +5,7 @@ const roleAuthContext = createContext();
 
 function useRoleAuth() {
   const [authed, setAuthed] = useState(() => {
-    let token = JSON.parse(localStorage.getItem("cattleCare"))?.token;
+    let token = JSON.parse(localStorage.getItem("cattleCare"))?.user?.token;
     if (token) {
       return true;
     } else {
@@ -13,10 +13,10 @@ function useRoleAuth() {
     }
   });
   const [role, setRole] = useState(() => {
-    let isAdmin = JSON.parse(localStorage.getItem("cattleCare"))?.isAdmin;
-    if (typeof isAdmin === 'undefined') return 'all';
-    else if (isAdmin) {
-      return 'admin';
+    let role = JSON.parse(localStorage.getItem("cattleCare"))?.role;
+    if (typeof role === "undefined") return "all";
+    else if (role === "admin") {
+      return "admin";
     } else {
       return "farmer";
     }

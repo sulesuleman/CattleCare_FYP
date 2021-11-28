@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useHistory } from "react-router";
 import "./index.css";
@@ -8,18 +8,69 @@ import { Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import EditAnimalModal from "./editAnimalModal";
 import Swal from "sweetalert2";
+import { getRequest, putRequest } from "service/apiClient";
+import { toast } from "react-toastify";
+import { deleteAnimal, getAnimals } from "service/constants";
 
 const AnimalStats = () => {
   const uploadRef = useRef();
   const history = useHistory();
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [animalsListing, setAnimalsListing] = useState([]);
+  const [selectedCattleInfo, setSelectedCattleInfo] = useState();
 
-  const handleEdit = (e) => {
+  useEffect(() => {
+    const init = async () => {
+      try {
+        let {
+          data: {
+            error,
+            message,
+            data: { animals },
+          },
+        } = await getRequest(getAnimals);
+        setAnimalsListing(animals);
+        if (error) {
+          toast.warn(message);
+        }
+      } catch (err) {
+        toast.error("Something went wrong");
+      }
+    };
+
+    init();
+  }, []);
+
+  const removeAnimal = (id) => {
+    setAnimalsListing((prevVal) => {
+      let index = prevVal.findIndex((_id) => _id === id);
+      return prevVal.slice(0, index);
+    });
+  };
+
+  const handleAnimalDelete = async (id) => {
+    try {
+      let {
+        data: { error, message },
+      } = await putRequest(`${deleteAnimal}/${id}`);
+      if (!error) {
+        removeAnimal(id);
+        toast.success(message);
+      } else {
+        toast.warn(message);
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
+
+  const handleEdit = (e, animalDetail) => {
     e.stopPropagation();
+    setSelectedCattleInfo(animalDetail);
     setIsEditModalVisible(true);
   };
 
-  const getConfirmation = (e) => {
+  const getConfirmation = (e, _id) => {
     e.stopPropagation();
     Swal.fire({
       title: "Are you sure?",
@@ -30,12 +81,12 @@ const AnimalStats = () => {
       confirmButtonText: "Delete",
       buttonsStyling: false,
       customClass: {
-        confirmButton: 'w-100   btn btn-success',
-        cancelButton:  'w-100  mt-1  btn btn-danger'
+        confirmButton: "w-100   btn btn-success",
+        cancelButton: "w-100  mt-1  btn btn-danger",
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        // onConfirmAction();
+        handleAnimalDelete(_id);
       }
     });
   };
@@ -46,6 +97,7 @@ const AnimalStats = () => {
       <EditAnimalModal
         show={isEditModalVisible}
         handleClose={() => setIsEditModalVisible(false)}
+        prefilledInfo={selectedCattleInfo}
       />
       <div className="d-flex align-items-end flex-row-reverse mb-5 p-1">
         <Button
@@ -98,49 +150,69 @@ const AnimalStats = () => {
             </tr>
           </thead>
           <tbody>
-            <tr onClick={() => history.push("/animal-stats/1")}>
-              <motion.td whileHover={{ textDecoration: "underline" }}>
-                Cow
-              </motion.td>
-              <td>Afghani</td>
-              <td>3200 pkr</td>
-              <td>Male</td>
-              <td>1000 kg</td>
-              <td>10 years</td>
-              <td>02-02-2021</td>
-              <td>2</td>
-              <td style={{ verticalAlign: "middle" }}>
-                <div className="table_actions_container">
-                  <svg
-                    onClick={handleEdit}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-pencil"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                  </svg>
-                  <svg
-                    onClick={getConfirmation}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    style={{ marginLeft: 20 }}
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-trash"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                    <path
-                      fill-rule="evenodd"
-                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                    />
-                  </svg>
-                </div>
-              </td>
-            </tr>
+            {animalsListing.map((animalDetail) => {
+              let {
+                age,
+                anticipationDate,
+                childCount,
+                weight,
+                breedType,
+                price,
+                sex,
+                cattleType,
+                _id,
+              } = animalDetail;
+
+              return (
+                <tr
+                  onClick={() =>
+                    history.push("/animal-stats/1", { cattleId: _id })
+                  }
+                >
+                  <motion.td whileHover={{ textDecoration: "underline" }}>
+                    {cattleType}
+                  </motion.td>
+                  <td>{breedType}</td>
+                  <td>{price}</td>
+                  <td>{sex}</td>
+                  <td>{weight} kg</td>
+                  <td>{age} years</td>
+                  <td>{anticipationDate}</td>
+                  <td>{childCount}</td>
+                  <td style={{ verticalAlign: "middle" }}>
+                    <div className="table_actions_container">
+                      <svg
+                        onClick={(e) => handleEdit(e, animalDetail)}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-pencil"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                      </svg>
+                      <svg
+                        onClick={(e) => getConfirmation(e, _id)}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        style={{ marginLeft: 20 }}
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-trash"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                        />
+                      </svg>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </div>

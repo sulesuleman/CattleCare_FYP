@@ -1,15 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row, Button } from "react-bootstrap";
+import { useLocation } from "react-router";
+import { toast } from "react-toastify";
+import { getRequest } from "service/apiClient";
 import { PageHeading } from "../../../globalComponents";
 import { AddRecordModal, MedicalHistoryTable } from "./components";
 import "./index.css";
 
 const ViewAnimalStats = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { state: { cattleId } = "" } = useLocation();
+
+  const [animalDetail, setAnimalDetail] = useState();
+
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const {
+          data: { message, error },
+        } = await getRequest();
+      } catch (err) {
+        toast.error("Something went wrong");
+      }
+    };
+    init();
+  }, []);
+
 
   return (
     <div className="animalstats_container">
       <AddRecordModal
+        cattleId={cattleId}
         show={isModalVisible}
         handleClose={() => setIsModalVisible(false)}
       />
@@ -43,9 +64,7 @@ const ViewAnimalStats = () => {
           <img
             className="animal_pic"
             alt=""
-            src={
-              "https://www.pngall.com/wp-content/uploads/4/Cow-PNG-Free-Download.png"
-            }
+            src={`https://${animalDetail?.picture}`}
           />
         </Col>
         <Col className="statistics_container" xs={12} lg={9}>
@@ -53,19 +72,19 @@ const ViewAnimalStats = () => {
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Weight</Col>
-                <Col className="statistics_value">94kg</Col>
+                <Col className="statistics_value">{animalDetail?.weight}</Col>
               </Row>
             </Col>
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Age</Col>
-                <Col className="statistics_value">12 years</Col>
+                <Col className="statistics_value">{animalDetail?.age}</Col>
               </Row>
             </Col>
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Sex</Col>
-                <Col className="statistics_value">Male</Col>
+                <Col className="statistics_value">{animalDetail?.sex}</Col>
               </Row>
             </Col>
           </Row>
@@ -73,19 +92,23 @@ const ViewAnimalStats = () => {
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Breed Type</Col>
-                <Col className="statistics_value">N/a</Col>
+                <Col className="statistics_value">
+                  {animalDetail?.breedType}
+                </Col>
               </Row>
             </Col>
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Cattle Type</Col>
-                <Col className="statistics_value">Cow</Col>
+                <Col className="statistics_value">
+                  {animalDetail?.cattleType}
+                </Col>
               </Row>
             </Col>
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Price</Col>
-                <Col className="statistics_value">42000 pkr</Col>
+                <Col className="statistics_value">{animalDetail?.price}</Col>
               </Row>
             </Col>
           </Row>
@@ -93,13 +116,17 @@ const ViewAnimalStats = () => {
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Anticipation Date</Col>
-                <Col className="statistics_value">22/12/21</Col>
+                <Col className="statistics_value">
+                  {animalDetail?.anticipationDate}
+                </Col>
               </Row>
             </Col>
             <Col xs={12} lg={4}>
               <Row>
                 <Col className="statistics_label">Child Count</Col>
-                <Col className="statistics_value">2</Col>
+                <Col className="statistics_value">
+                  {animalDetail?.childCount}
+                </Col>
               </Row>
             </Col>
           </Row>
@@ -109,7 +136,7 @@ const ViewAnimalStats = () => {
         <div className="my-5">
           <PageHeading text="Medical History" />
         </div>
-          <MedicalHistoryTable />
+        {animalDetail?.medicalHistory && <MedicalHistoryTable />}
       </div>
     </div>
   );

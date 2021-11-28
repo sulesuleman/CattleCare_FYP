@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { addAnimalSchema } from "../../utils/validationSchema";
-import { PageHeading } from "globalComponents";
+import { Button, PageHeading } from "globalComponents";
 import { UploadPicture } from "./components";
+import { toast } from "react-toastify";
+import { postFormData, postRequest, putRequest } from "service/apiClient";
+import { editAnimal, postAnimalForm } from "service/constants";
 
-const AddAnimalPage = ({ mode = "add" }) => {
+const AddAnimalPage = ({ mode = "add", prefilledInfo = undefined }) => {
   const [isSubmitting, setSubmitting] = useState(false);
   const [animalImage, setAnimalImage] = useState();
 
@@ -21,27 +24,101 @@ const AddAnimalPage = ({ mode = "add" }) => {
     return "";
   };
 
+  const handleAddAnimal = async (values, formik) => {
+    if (!animalImage) {
+      toast.warn("Please select animal picture");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      let params = {
+        ...values,
+      };
+      console.log("params", params);
+
+      let formData = new FormData();
+      formData.append("profilePicture", animalImage);
+      Object.keys(params).forEach((key) => {
+        formData.append(key, params[key]);
+      });
+      let {
+        data: { error, message },
+      } = await postFormData(postAnimalForm, formData);
+      setSubmitting(false);
+
+      if (!error) {
+        formik.resetForm();
+        setAnimalImage();
+        toast.success(message);
+      } else {
+        toast.warn(message);
+      }
+    } catch (err) {
+      setSubmitting(false);
+      toast.error("Something went wrong");
+    }
+  };
+
+  const handleEditAnimal = async (values, formik) => {
+    // if (!animalImage) {
+    //   toast.warn("Please select animal picture");
+    //   return;
+    // }
+    setSubmitting(true);
+    try {
+      let params = {
+        ...values,
+      };
+
+      let {
+        data: { error, message },
+      } = await putRequest(`${editAnimal}/${prefilledInfo?._id}`, params);
+      setSubmitting(false);
+
+      if (!error) {
+        formik.resetForm();
+        setAnimalImage();
+        toast.success(message);
+      } else {
+        toast.warn(message);
+      }
+    } catch (err) {
+      setSubmitting(false);
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <div className="container-fluid">
       {mode === "add" && <PageHeading text="Add Animals" />}
       <Formik
-        //   onSubmit={handleSignupSubmit}
+        onSubmit={mode === "edit" ? handleEditAnimal : handleAddAnimal}
         validationSchema={addAnimalSchema}
-        initialValues={{
-          weight: "",
-          age: "",
-          breedType: "",
-          cattleType: "",
-          sex: "",
-          price: "",
-          anticipationDate: "",
-          childCount: "",
-        }}
+        initialValues={
+          prefilledInfo
+            ? { ...prefilledInfo }
+            : {
+                cattleId: "",
+                weight: "",
+                age: "",
+                breedType: "",
+                cattleType: "",
+                sex: "",
+                price: "",
+                anticipationDate: "",
+                childCount: "",
+              }
+        }
       >
-        {({ submitForm, touched, errors }) => (
+        {({ touched, errors }) => (
           <div className="mt-5">
             <Form>
-              <UploadPicture onChange={(img) => setAnimalImage(img)} />
+              <UploadPicture
+                intialImage={prefilledInfo?.picture}
+                onChange={(e) =>
+                  setAnimalImage(e?.target?.files ? e?.target.files[0] : "")
+                }
+              />
               <div className="mt-2 row gy-3">
                 <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">Cattle Id</label>
@@ -57,7 +134,7 @@ const AddAnimalPage = ({ mode = "add" }) => {
                     className="error"
                   />
                 </div>
-                <div className="col-xs-12 col-sm-6">
+                {/* <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">EarTag</label>
                   <Field
                     type="file"
@@ -74,7 +151,7 @@ const AddAnimalPage = ({ mode = "add" }) => {
                     name="earTag"
                     className="error"
                   />
-                </div>
+                </div> */}
               </div>
               <div className="row gy-3">
                 <div className="col-xs-12 col-sm-6">
@@ -108,7 +185,7 @@ const AddAnimalPage = ({ mode = "add" }) => {
                     <Field
                       name="breedType"
                       placeholder="eg Bafallo, Cow"
-                      type="password"
+                      type="text"
                       className={getInputClasses(touched, "breedType", errors)}
                     />
                     <ErrorMessage
@@ -207,7 +284,6 @@ const AddAnimalPage = ({ mode = "add" }) => {
                   size="large"
                   type="primary"
                   className="full_expanded_btn_green"
-                  onClick={submitForm}
                   loading={isSubmitting}
                 >
                   {mode === "edit" ? "Edit" : "Add"} Animal

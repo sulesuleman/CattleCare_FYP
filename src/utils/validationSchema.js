@@ -30,6 +30,7 @@ export const SignupSchema = Yup.object().shape({
 });
 
 export const addAnimalSchema = Yup.object().shape({
+  cattleId: Yup.string().required("Cattle id is a required field"),
   weight: Yup.string().required("Weight is a required field"),
   age: Yup.string().required("Age is a required field"),
   breedType: Yup.string().required("Breed type is a required field"),
@@ -54,7 +55,7 @@ export const addMedicalRecordSchema = Yup.object().shape({
   ),
   diseaseType: Yup.string().required("Disease Type is a required field"),
   diseaseDate: Yup.string().required("Disease Date is a required field"),
-  recoverStatus: Yup.string().required("Recover status is a required field"),
+  recoveryStatus: Yup.string().required("Recover status is a required field"),
 });
 
 export const LoginSchema = Yup.object().shape({

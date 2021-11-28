@@ -1,37 +1,65 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button, Row, Col } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { postRequest } from "service/apiClient";
+import { postAnimalHealth } from "service/constants";
 import { getInputClasses } from "../../../../../assets/images/helpers";
 import { PageHeading } from "../../../../../globalComponents";
 import { addMedicalRecordSchema } from "../../../../../utils/validationSchema";
 import "./index.css";
 
-const AddRecordModal = ({ show, handleClose, mode = "add" }) => {
+const AddRecordModal = ({ show, handleClose, mode = "add", cattleId = "" }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handlePostMedicalHistory = async (values, formik) => {
+    setIsSubmitting(true);
+
+    try {
+      let {
+        data: { error, message },
+      } = await postRequest(`${postAnimalHealth}`, {
+        ...values,
+        cattleId,
+      });
+      setIsSubmitting(false);
+
+      if (!error) {
+        toast.success(message);
+      } else {
+        toast.warn(message);
+      }
+    } catch (err) {
+      setIsSubmitting(false);
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
-    <Modal show={show} onHide={handleClose} size="lg">
-      <Modal.Header closeButton>
-        <PageHeading
-          fontSize={22}
-          text={`${mode === "add" ? "Add" : "Edit"} Medical Record`}
-        />
-      </Modal.Header>
-      <Modal.Body className="add_record_body">
-        <div>
-          <Formik
-            //   onSubmit={handleSignupSubmit}
-            validationSchema={addMedicalRecordSchema}
-            initialValues={{
-              vaccinationType: "",
-              vaccinationDate: "",
-              vaccinationPeriod: "",
-              diseaseType: "",
-              diseaseDate: "",
-              recoverStatus: "",
-            }}
-          >
-            {(formik) => {
-              // let { submitForm, touched } = formik;
-              return (
+    <Formik
+      onSubmit={handlePostMedicalHistory}
+      validationSchema={addMedicalRecordSchema}
+      initialValues={{
+        vaccinationType: "",
+        vaccinationDate: "",
+        vaccinationPeriod: "",
+        diseaseType: "",
+        diseaseDate: "",
+        recoveryStatus: "",
+      }}
+    >
+      {(formik) => {
+        let { submitForm } = formik;
+        return (
+          <Modal show={show} onHide={handleClose} size="lg">
+            <Modal.Header closeButton>
+              <PageHeading
+                fontSize={22}
+                text={`${mode === "add" ? "Add" : "Edit"} Medical Record`}
+              />
+            </Modal.Header>
+            <Modal.Body className="add_record_body">
+              <div>
                 <div className="mt-2">
                   <Form>
                     <div className="row gy-2">
@@ -69,6 +97,7 @@ const AddRecordModal = ({ show, handleClose, mode = "add" }) => {
                           <label className="mb-2">Disease Type</label>
                           <Field
                             name="diseaseType"
+                            type=""
                             placeholder="eg Ankle injury"
                             className={getInputClasses(formik, "diseaseType")}
                           />
@@ -103,8 +132,8 @@ const AddRecordModal = ({ show, handleClose, mode = "add" }) => {
                           <label>Disease Date</label>
                           <Field
                             name="diseaseDate"
-                            placeholder="Please Enter Sex"
-                            type="text"
+                            placeholder="Please Enter Date"
+                            type="date"
                             className={getInputClasses(formik, "diseaseDate")}
                           />
                           <ErrorMessage
@@ -115,16 +144,16 @@ const AddRecordModal = ({ show, handleClose, mode = "add" }) => {
                         </Col>
                         <Col xs={12} sm={6}>
                           {" "}
-                          <label>Recover Status</label>
+                          <label>Recovery Status</label>
                           <Field
-                            name="recoverStatus"
+                            name="recoveryStatus"
                             placeholder="Please Enter status"
                             type="text"
-                            className={getInputClasses(formik, "recoverStatus")}
+                            className={getInputClasses(formik, "recoveryStatus")}
                           />
                           <ErrorMessage
                             component="div"
-                            name="recoverStatus"
+                            name="recoveryStatus"
                             className="error"
                           />
                         </Col>
@@ -132,20 +161,24 @@ const AddRecordModal = ({ show, handleClose, mode = "add" }) => {
                     </div>
                   </Form>
                 </div>
-              );
-            }}
-          </Formik>
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" className="btn_green" onClick={handleClose}>
-          Save
-        </Button>
-      </Modal.Footer>
-    </Modal>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                className="btn_green"
+                onClick={submitForm}
+              >
+                Save
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        );
+      }}
+    </Formik>
   );
 };
 

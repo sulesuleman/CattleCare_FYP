@@ -4,9 +4,11 @@ import UPLOAD_PLACEHOLDER from "assets/images/upload.png";
 import { textGreyColor } from "globalStyles/globalStyle";
 import DeleteIcon from "globalComponents/deleteIcon";
 
-const UploadPicture = ({ onChange }) => {
+const UploadPicture = ({ onChange, intialImage }) => {
   const inputFieldRef = useRef();
-  const [selectedImageUrl, setSelectedImageUrl] = useState();
+  const [selectedImageUrl, setSelectedImageUrl] = useState(
+    intialImage ?? undefined
+  );
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
