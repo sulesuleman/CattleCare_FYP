@@ -374,7 +374,7 @@ table th {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  z-index: 1;
+  z-index: 0;
   width: 100%;
   opacity: 0.9;
   margin-bottom: 1rem;

@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { postRequest } from "../../../../service/apiClient";
 import { postSignupForm } from "../../../../service/constants";
@@ -26,14 +26,13 @@ const RegisterForm = ({ onScreenChange }) => {
       setIsSubmitting(false);
       if (!error) {
         await login(data, data.isAdmin ? 'admin' : 'farmer')
-
+        toast.success(message);
       }
       else {
         toast.warn(message);
       }
     } catch (error) {
       setIsSubmitting(false);
-
       toast.error("Something went wrong")
     }
   };
@@ -87,7 +86,7 @@ const RegisterForm = ({ onScreenChange }) => {
       </div>
       <div className="login_form">
         <Formik
-          onSubmit={handleSignupSubmit}
+          onSubmit={isSubmitting ? null : handleSignupSubmit}
           validationSchema={SignupSchema}
           initialValues={{
             name: "",
@@ -180,12 +179,22 @@ const RegisterForm = ({ onScreenChange }) => {
               </div>
               <div style={{ marginTop: 30 }}>
                 <Button
-                  size="large"
-                  type="primary"
+                  type="submit"
+                  variant="primary"
                   className="full_expanded_btn_green"
-                  loading={isSubmitting}
+                  disabled={isSubmitting}
                 >
                   Signup
+                  {isSubmitting &&
+                    (<Spinner
+                      variant="success"
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />)
+                  }
                 </Button>
               </div>
             </Form>

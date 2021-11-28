@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { postRequest } from "../../../../service/apiClient";
 import { postSigninForm } from "../../../../service/constants";
 import { asyncLocalStorage } from "../../../../utils";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { LoginSchema } from "../../../../utils/validationSchema";
 import { useRoleAuth } from "../../../../contexts";
@@ -34,6 +34,7 @@ const LoginForm = ({ onScreenChange }) => {
         setIsSubmitting(false);
         if (!error) {
           await login(data, data.isAdmin ? 'admin' : 'farmer')
+          toast.success(message);
         }
         else {
           toast.warn(message);
@@ -124,12 +125,22 @@ const LoginForm = ({ onScreenChange }) => {
               </div>
               <div style={{ marginTop: 30 }}>
                 <Button
-                  size="large"
-                  type="primary"
+                  type="submit"
+                  variant="primary"
                   className="full_expanded_btn_green"
-                  loading={isSubmitting}
+                  disabled={isSubmitting}
                 >
-                  Start Now
+                  Login
+                  {isSubmitting &&
+                    (<Spinner
+                      variant="success"
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />)
+                  }
                 </Button>
                 {/* <Divider style={{ color: "black" }}>
                     <span className="greyText">OR</span>

@@ -1,11 +1,6 @@
 // import axios from "axios";
 import axiosInstance from "./axiosInstance";
 
-const baseUrl = process.env.BASE_URL; // global
-
-console.log(process.env.BASE_URL);
-
-
 // get request
 const getRequest = async (endpoint) => {
   try {

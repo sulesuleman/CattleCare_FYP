@@ -34,7 +34,7 @@
   opacity: 0.5;
   background-size: cover;
   left: 0;
-  z-index: 2;
+  z-index: 0;
   bottom: 0;
 }
 
@@ -46,13 +46,13 @@
   background-repeat: no-repeat;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 0;
   bottom: 0;
 }
 
 .right_desc {
   position: relative;
-  z-index: 4;
+  z-index: 0;
   padding: 60px 10%;
   color: white;
 }
