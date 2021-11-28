@@ -1,55 +1,40 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { postRequest } from "../../../../service/apiClient";
 import { postSignupForm } from "../../../../service/constants";
 import { asyncLocalStorage } from "../../../../utils";
 import { SignupSchema } from "../../../../utils/validationSchema";
+import { toast } from 'react-toastify';
+import { useRoleAuth } from "contexts";
 
 const RegisterForm = ({ onScreenChange }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const history = useHistory();
+  const {
+    login
+  } = useRoleAuth();
 
   const handleSignupSubmit = async (values) => {
     try {
+      console.log(values);
+      const { email, password, name, phoneNo, address } = values;
       setIsSubmitting(true);
       const {
-        data: { success, token },
-      } = await postRequest(postSignupForm, { ...values });
+        data: { data, error, message },
+      } = await postRequest(postSignupForm, { email, password, name, phoneNo, address });
       setIsSubmitting(false);
-      if (success) {
-        asyncLocalStorage
-          .setItem("token", JSON.stringify(token))
-          .then((value) => history.push("/"));
+      if (!error) {
+        await login(data, data.isAdmin ? 'admin' : 'farmer')
+        toast.success(message);
+      }
+      else {
+        toast.warn(message);
       }
     } catch (error) {
       setIsSubmitting(false);
-      console.error(error);
+      toast.error("Something went wrong")
     }
-  };
-  const handleValidation = (values) => {
-    let errors = {};
-    let { email, password, confirmPassword, address, phoneNumber } = values;
-    if (!email) {
-      errors.email = "Email is required";
-    }
-    if (!password) {
-      errors.password = "Password is required";
-    }
-    if (!confirmPassword) {
-      errors.confirmPassword = "Please retype password";
-    }
-    if (password !== confirmPassword) {
-      errors.confirmPassword = "Passwords don't match";
-    }
-    if (!address) {
-      errors.address = "Address is Required";
-    }
-    if (!phoneNumber) {
-      errors.phoneNumber = "Phone number is required";
-    }
-    return errors;
   };
 
   const getInputClasses = (touched, fieldname, errors) => {
@@ -101,7 +86,7 @@ const RegisterForm = ({ onScreenChange }) => {
       </div>
       <div className="login_form">
         <Formik
-          onSubmit={handleSignupSubmit}
+          onSubmit={isSubmitting ? null : handleSignupSubmit}
           validationSchema={SignupSchema}
           initialValues={{
             name: "",
@@ -109,11 +94,20 @@ const RegisterForm = ({ onScreenChange }) => {
             password: "",
             confirmPassword: "",
             address: "",
-            phoneNumber: "",
+            phoneNo: "",
           }}
         >
           {({ submitForm, touched, errors, getFieldProps }) => (
             <Form>
+              <div style={{ marginTop: 20 }}>
+                <label>Name</label>
+                <Field
+                  name="name"
+                  className={getInputClasses(touched, "name", errors)}
+                  placeholder="Full name"
+                />
+                <ErrorMessage component="div" name="name" className="error" />
+              </div>
               <div style={{ marginTop: 20 }}>
                 <label>Email Address</label>
                 <Field
@@ -158,14 +152,14 @@ const RegisterForm = ({ onScreenChange }) => {
               <div style={{ marginTop: 20 }}>
                 <label>Phone Number</label>
                 <Field
-                  name="phoneNumber"
+                  name="phoneNo"
                   placeholder="Please Enter Phone Number"
                   type="text"
-                  className={getInputClasses(touched, "phoneNumber", errors)}
+                  className={getInputClasses(touched, "phoneNo", errors)}
                 />
                 <ErrorMessage
                   component="div"
-                  name="phoneNumber"
+                  name="phoneNo"
                   className="error"
                 />
               </div>
@@ -185,13 +179,22 @@ const RegisterForm = ({ onScreenChange }) => {
               </div>
               <div style={{ marginTop: 30 }}>
                 <Button
-                  size="large"
-                  type="primary"
+                  type="submit"
+                  variant="primary"
                   className="full_expanded_btn_green"
-                  onClick={submitForm}
-                  loading={isSubmitting}
+                  disabled={isSubmitting}
                 >
                   Signup
+                  {isSubmitting &&
+                    (<Spinner
+                      variant="success"
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />)
+                  }
                 </Button>
               </div>
             </Form>

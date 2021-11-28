@@ -68,7 +68,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 999;
+  z-index: 10;
   overflow-y: hidden;
 }
 .hamburger_container {
@@ -79,7 +79,7 @@
 }
 .dull_black_overlay {
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 99;
+  z-index: 10;
   position: fixed;
   left: 0;
   top: 0;
