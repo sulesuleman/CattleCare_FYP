@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
-import { Col, Row } from "react-bootstrap";
-import { addAnimalSchema } from "../../utils/validationSchema";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button, PageHeading } from "globalComponents";
-import { UploadPicture } from "./components";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { postFormData, postRequest, putRequest } from "service/apiClient";
+import { postFormData, putRequest } from "service/apiClient";
 import { editAnimal, postAnimalForm } from "service/constants";
+import { addAnimalSchema } from "../../utils/validationSchema";
+import { UploadPicture } from "./components";
 
-const AddAnimalPage = ({ mode = "add", prefilledInfo = undefined }) => {
+const AddAnimalPage = ({
+  mode = "add",
+  prefilledInfo = undefined,
+  onSuccess = null,
+}) => {
   const [isSubmitting, setSubmitting] = useState(false);
-  const [animalImage, setAnimalImage] = useState();
+  const [animalImage, setAnimalImage] = useState(prefilledInfo?.picture);
 
   const getInputClasses = (touched, fieldname, errors) => {
     if (touched[fieldname] && errors[fieldname]) {
@@ -37,7 +41,7 @@ const AddAnimalPage = ({ mode = "add", prefilledInfo = undefined }) => {
       console.log("params", params);
 
       let formData = new FormData();
-      formData.append("profilePicture", animalImage);
+      formData.append("picture", animalImage);
       Object.keys(params).forEach((key) => {
         formData.append(key, params[key]);
       });
@@ -60,10 +64,10 @@ const AddAnimalPage = ({ mode = "add", prefilledInfo = undefined }) => {
   };
 
   const handleEditAnimal = async (values, formik) => {
-    // if (!animalImage) {
-    //   toast.warn("Please select animal picture");
-    //   return;
-    // }
+    if (!animalImage) {
+      toast.warn("Please select animal picture");
+      return;
+    }
     setSubmitting(true);
     try {
       let params = {
@@ -78,6 +82,7 @@ const AddAnimalPage = ({ mode = "add", prefilledInfo = undefined }) => {
       if (!error) {
         formik.resetForm();
         setAnimalImage();
+        onSuccess();
         toast.success(message);
       } else {
         toast.warn(message);

@@ -5,7 +5,7 @@ import AddAnimalPage from "../../addAnimalPage";
 
 import "./index.css";
 
-const EditAnimalModal = ({ handleClose, show , prefilledInfo }) => {
+const EditAnimalModal = ({ handleClose, show, prefilledInfo, onSuccess }) => {
   return (
     <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
@@ -13,7 +13,11 @@ const EditAnimalModal = ({ handleClose, show , prefilledInfo }) => {
       </Modal.Header>
       <Modal.Body>
         <div className="edit_animal_body">
-          <AddAnimalPage mode={"edit"} prefilledInfo={prefilledInfo}/>
+          <AddAnimalPage
+            mode={"edit"}
+            prefilledInfo={prefilledInfo}
+            onSuccess={onSuccess}
+          />
         </div>
       </Modal.Body>
     </Modal>

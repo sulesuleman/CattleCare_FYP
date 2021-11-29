@@ -1,37 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Row, Button } from "react-bootstrap";
 import { useLocation } from "react-router";
-import { toast } from "react-toastify";
-import { getRequest } from "service/apiClient";
 import { PageHeading } from "../../../globalComponents";
 import { AddRecordModal, MedicalHistoryTable } from "./components";
 import "./index.css";
 
 const ViewAnimalStats = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { state: { cattleId } = "" } = useLocation();
-
-  const [animalDetail, setAnimalDetail] = useState();
-
-  useEffect(() => {
-    const init = async () => {
-      try {
-        const {
-          data: { message, error },
-        } = await getRequest();
-      } catch (err) {
-        toast.error("Something went wrong");
-      }
-    };
-    init();
-  }, []);
-
+  const { state: { animalDetail } = {} } = useLocation();
+  const [refetchMedicalHistory, setRefetchMedicalHistory] = useState(false);
 
   return (
     <div className="animalstats_container">
       <AddRecordModal
-        cattleId={cattleId}
+        cattleId={animalDetail._id}
         show={isModalVisible}
+        onSuccess={() => {
+          setIsModalVisible(false);
+          setRefetchMedicalHistory((prevValue) => !prevValue);
+        }}
         handleClose={() => setIsModalVisible(false)}
       />
       <PageHeading text="Animal Detail" />
@@ -64,7 +51,7 @@ const ViewAnimalStats = () => {
           <img
             className="animal_pic"
             alt=""
-            src={`https://${animalDetail?.picture}`}
+            src={animalDetail?.picture}
           />
         </Col>
         <Col className="statistics_container" xs={12} lg={9}>
@@ -136,7 +123,12 @@ const ViewAnimalStats = () => {
         <div className="my-5">
           <PageHeading text="Medical History" />
         </div>
-        {animalDetail?.medicalHistory && <MedicalHistoryTable />}
+        {animalDetail?._id && (
+          <MedicalHistoryTable
+            refetch={refetchMedicalHistory}
+            cattleId={animalDetail?._id}
+          />
+        )}
       </div>
     </div>
   );

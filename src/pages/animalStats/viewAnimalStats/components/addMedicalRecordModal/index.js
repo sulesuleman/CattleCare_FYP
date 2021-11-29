@@ -2,14 +2,24 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { postRequest } from "service/apiClient";
-import { postAnimalHealth } from "service/constants";
+import { postRequest, putRequest } from "service/apiClient";
+import {
+  editMedicalHistoryOfAnimal,
+  postAnimalHealth,
+} from "service/constants";
 import { getInputClasses } from "../../../../../assets/images/helpers";
 import { PageHeading } from "../../../../../globalComponents";
 import { addMedicalRecordSchema } from "../../../../../utils/validationSchema";
 import "./index.css";
 
-const AddRecordModal = ({ show, handleClose, mode = "add", cattleId = "" }) => {
+const AddRecordModal = ({
+  show,
+  handleClose,
+  mode = "add",
+  cattleId = "",
+  onSuccess,
+  selectedRecord,
+}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handlePostMedicalHistory = async (values, formik) => {
@@ -26,6 +36,34 @@ const AddRecordModal = ({ show, handleClose, mode = "add", cattleId = "" }) => {
 
       if (!error) {
         toast.success(message);
+        onSuccess();
+      } else {
+        toast.warn(message);
+      }
+    } catch (err) {
+      setIsSubmitting(false);
+      toast.error("Something went wrong");
+    }
+  };
+
+  const handleEditMedicalHistory = async (values) => {
+    setIsSubmitting(true);
+
+    try {
+      let {
+        data: { error, message },
+      } = await putRequest(
+        `${editMedicalHistoryOfAnimal}/${selectedRecord?._id}`,
+        {
+          ...values,
+          cattleId,
+        }
+      );
+      setIsSubmitting(false);
+
+      if (!error) {
+        toast.success(message);
+        onSuccess();
       } else {
         toast.warn(message);
       }
@@ -37,16 +75,22 @@ const AddRecordModal = ({ show, handleClose, mode = "add", cattleId = "" }) => {
 
   return (
     <Formik
-      onSubmit={handlePostMedicalHistory}
+      onSubmit={
+        mode === "edit" ? handleEditMedicalHistory : handlePostMedicalHistory
+      }
       validationSchema={addMedicalRecordSchema}
-      initialValues={{
-        vaccinationType: "",
-        vaccinationDate: "",
-        vaccinationPeriod: "",
-        diseaseType: "",
-        diseaseDate: "",
-        recoveryStatus: "",
-      }}
+      initialValues={
+        mode === "edit"
+          ? selectedRecord
+          : {
+              vaccinationType: "",
+              vaccinationDate: "",
+              vaccinationPeriod: "",
+              diseaseType: "",
+              diseaseDate: "",
+              recoveryStatus: "",
+            }
+      }
     >
       {(formik) => {
         let { submitForm } = formik;
@@ -149,7 +193,10 @@ const AddRecordModal = ({ show, handleClose, mode = "add", cattleId = "" }) => {
                             name="recoveryStatus"
                             placeholder="Please Enter status"
                             type="text"
-                            className={getInputClasses(formik, "recoveryStatus")}
+                            className={getInputClasses(
+                              formik,
+                              "recoveryStatus"
+                            )}
                           />
                           <ErrorMessage
                             component="div"

@@ -4,8 +4,9 @@
   padding: 20px 10px;
 }
 .animal_pic {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  object-fit: cover;
+  height: 210px;
   border-radius: 8px;
 }
 .statistics_container {

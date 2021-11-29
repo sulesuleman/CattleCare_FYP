@@ -18,6 +18,7 @@ const AnimalStats = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [animalsListing, setAnimalsListing] = useState([]);
   const [selectedCattleInfo, setSelectedCattleInfo] = useState();
+  const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -39,7 +40,7 @@ const AnimalStats = () => {
     };
 
     init();
-  }, []);
+  }, [refetch]);
 
   const removeAnimal = (id) => {
     setAnimalsListing((prevVal) => {
@@ -98,6 +99,10 @@ const AnimalStats = () => {
         show={isEditModalVisible}
         handleClose={() => setIsEditModalVisible(false)}
         prefilledInfo={selectedCattleInfo}
+        onSuccess={() => {
+          setRefetch((prevValue) => !prevValue);
+          setIsEditModalVisible(false);
+        }}
       />
       <div className="d-flex align-items-end flex-row-reverse mb-5 p-1">
         <Button
@@ -166,7 +171,7 @@ const AnimalStats = () => {
               return (
                 <tr
                   onClick={() =>
-                    history.push("/animal-stats/1", { cattleId: _id })
+                    history.push("/animal-stats/1", { animalDetail })
                   }
                 >
                   <motion.td whileHover={{ textDecoration: "underline" }}>
