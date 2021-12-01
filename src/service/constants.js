@@ -7,7 +7,13 @@ let postSigninForm = "api/auth/login",
   postAnimalHealth = "api/medical/create",
   deleteMedicalRecord = "api/medical/delete",
   getMedicalHistoryOfAnimal = "api/medical",
-  editMedicalHistoryOfAnimal = "api/medical/update";
+  editMedicalHistoryOfAnimal = "api/medical/update",
+  getFeeds = "api/feed",
+  addFeed = "api/feed/create",
+  updateFeed = "api/feed/update",
+  deleteFeed = "api/feed/delete",
+  uploadBulkAnimal = "api/animal/bulk-create",
+  chargeAmount = "api/stripe/charge";
 
 export {
   postSigninForm,
@@ -20,4 +26,10 @@ export {
   deleteMedicalRecord,
   getMedicalHistoryOfAnimal,
   editMedicalHistoryOfAnimal,
+  addFeed,
+  getFeeds,
+  updateFeed,
+  deleteFeed,
+  uploadBulkAnimal,
+  chargeAmount,
 };

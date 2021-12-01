@@ -84,4 +84,24 @@ const postFormData = async (endpoint, body) => {
   }
 };
 
-export { getRequest, postRequest, postFormData, putRequest };
+const putFormData = async (endpoint, body) => {
+  let token = JSON.parse(localStorage.getItem("cattleCare"))?.user?.token;
+  let options = {
+    method: "put",
+    url: `/${endpoint}`,
+    data: body,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `bearer ${token}`,
+    },
+  };
+  try {
+    return await axiosInstance(options);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
+export { getRequest, postRequest, postFormData, putRequest , putFormData };

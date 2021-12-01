@@ -21,7 +21,9 @@ function useRoleAuth() {
       return "farmer";
     }
   });
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("cattleCare"))?.user;
+  });
 
   const logout = () => {
     return new Promise((res) => {

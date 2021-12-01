@@ -7,6 +7,7 @@ export const PricingCard = ({
   planName = "",
   price = "",
   options = ["Manage Animals", "Manage Feed", "Manage Cattle"],
+  onClick,
 }) => {
   return (
     <Col xs={12} sm={6} md={4}>
@@ -27,6 +28,7 @@ export const PricingCard = ({
             text="Get a Quote"
             classNames="green_btn"
             type="button"
+            onClick={onClick}
           ></Button>
         </div>
       </div>

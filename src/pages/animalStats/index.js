@@ -8,9 +8,9 @@ import { Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import EditAnimalModal from "./editAnimalModal";
 import Swal from "sweetalert2";
-import { getRequest, putRequest } from "service/apiClient";
+import { getRequest, postFormData, putRequest } from "service/apiClient";
 import { toast } from "react-toastify";
-import { deleteAnimal, getAnimals } from "service/constants";
+import { deleteAnimal, getAnimals, uploadBulkAnimal } from "service/constants";
 
 const AnimalStats = () => {
   const uploadRef = useRef();
@@ -92,6 +92,24 @@ const AnimalStats = () => {
     });
   };
 
+  const onFileUpload = async (data, fileInfo, originalFile) => {
+    try {
+      let formData = new FormData();
+      formData.append("csvFile", originalFile);
+      let {
+        data: { error, message },
+      } = await postFormData(uploadBulkAnimal, formData, { type: "text/csv" });
+      if (!error) {
+        toast.success(message);
+        setRefetch((prevVal) => !prevVal);
+      } else {
+        toast.error(message);
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <div className="animal_stats_container">
       <PageHeading text="Animals" />
@@ -137,7 +155,7 @@ const AnimalStats = () => {
             cssLabelClass="d-flex w-100 py-2"
             label="Bulk Upload Animals"
             accept=".csv"
-            // onFileLoaded={onFileUpload}
+            onFileLoaded={onFileUpload}
           />
         </div>
         <Table className="table-borderless table-responsive">

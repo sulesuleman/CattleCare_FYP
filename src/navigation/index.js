@@ -1,3 +1,4 @@
+import { Loader } from "globalComponents";
 import React, { Suspense } from "react";
 import { Spinner } from "react-bootstrap";
 import { Redirect, Route } from "react-router";
@@ -13,16 +14,14 @@ export const RouterConfig = () => {
   return (
     <Suspense
       fallback={
-        <div className="h-100 w-100 flex justify-content-center align-items-center">
-          <Spinner animation="border" variant="primary" />
-        </div>
+        <Loader/>
       }
     >
       {auth ? (
         role === "farmer" ? (
           <DashboardLayout>
             <Switch>
-              {FarmerRoutes.map(({ Component, exact, path }, index) => (
+              {FarmerRoutes.map(({ Component, exact, path  }, index) => (
                 <Route path={path} exact={exact}>
                   <Component />
                 </Route>

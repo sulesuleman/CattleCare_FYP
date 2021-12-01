@@ -3,7 +3,7 @@ import { Button, PageHeading } from "globalComponents";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { postFormData, putRequest } from "service/apiClient";
+import { postFormData, putFormData, putRequest } from "service/apiClient";
 import { editAnimal, postAnimalForm } from "service/constants";
 import { addAnimalSchema } from "../../utils/validationSchema";
 import { UploadPicture } from "./components";
@@ -74,9 +74,15 @@ const AddAnimalPage = ({
         ...values,
       };
 
+      let formData = new FormData();
+      Object.keys(params).map((key) => formData.append(key, params[key]));
+
+      if (typeof animalImage !== "string")
+        formData.append("picture", animalImage);
+
       let {
         data: { error, message },
-      } = await putRequest(`${editAnimal}/${prefilledInfo?._id}`, params);
+      } = await putFormData(`${editAnimal}/${prefilledInfo?._id}`, formData);
       setSubmitting(false);
 
       if (!error) {
@@ -98,6 +104,7 @@ const AddAnimalPage = ({
       {mode === "add" && <PageHeading text="Add Animals" />}
       <Formik
         onSubmit={mode === "edit" ? handleEditAnimal : handleAddAnimal}
+        enableReinitialize
         validationSchema={addAnimalSchema}
         initialValues={
           prefilledInfo

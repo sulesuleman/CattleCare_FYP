@@ -3,7 +3,7 @@ import {
   Banner,
   ChooseUsSection,
   PricingSection,
-  ServiceSection
+  ServiceSection,
 } from "./components";
 
 const LandingPage = () => {

@@ -1,0 +1,25 @@
+.subscription_modal_container {
+  padding: 20px;
+}
+
+.item_label {
+  font-size: 20px;
+  font-family: "Poppins-SemiBold";
+}
+.item_value {
+  font-size: 14px;
+  margin-top: 10px;
+  font-family: "Poppins-Light";
+}
+
+.card_input {
+  border: 0;
+  box-shadow: 0 0 5pt 0.5pt rgba(211, 211, 211, 0.4);
+  height: 50px;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  outline: none;
+  padding: 18px 10px;
+  margin-bottom: 10px;
+}
