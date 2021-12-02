@@ -10,7 +10,8 @@ import { AdminRoutes, BasicRoutes, FarmerRoutes } from "./routes";
 export const RouterConfig = () => {
   const role = useRoleAuth().role;
   const auth = useRoleAuth().authed;
-  console.log('auth' , auth)
+
+
   return (
     <Suspense
       fallback={

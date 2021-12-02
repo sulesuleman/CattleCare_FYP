@@ -1,2 +1,2 @@
 export { default as LoginForm } from "./login";
-export { default as RegisterForm } from "./signup";
+export { default as SelectSubscriptionModal } from "./selectSubscriptionModal";

@@ -1,0 +1,22 @@
+.profile_name {
+  color: #797a7c;
+  font-family: "Poppins-Semibold";
+}
+.profile_role {
+  color: rgb(44, 177, 120);
+  font-size: 22px;
+  margin-top: 5px;
+  font-family: "Poppins-Medium";
+  text-transform: uppercase;
+}
+
+.manage_profile_container .nav-link {
+    color: #797a7c ;
+    font-size: 16px;
+}
+
+
+.manage_profile_container .nav-link.active{
+    background-color: #2cb178;
+    color: white;
+}

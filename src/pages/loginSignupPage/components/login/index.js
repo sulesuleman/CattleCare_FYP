@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { postRequest } from "../../../../service/apiClient";
 import { postSigninForm } from "../../../../service/constants";
-import { asyncLocalStorage } from "../../../../utils";
 import { Button, Spinner } from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { LoginSchema } from "../../../../utils/validationSchema";
 import { useRoleAuth } from "../../../../contexts";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { SelectSubscriptionModal } from "..";
 
 const LoginForm = ({ onScreenChange }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const history = useHistory();
-  const { login } = useRoleAuth();
+  const { login, loginWithoutSession } = useRoleAuth();
+  const [isPricingModalVisible, setIsPricingModalVisible] = useState(false);
 
   const handleLoginSubmit = async (values) => {
-    // try {
     setIsSubmitting(true);
     const { email, password } = values;
     if (email === "admin@gmail.com" && password === "1234567890") {
@@ -23,9 +23,8 @@ const LoginForm = ({ onScreenChange }) => {
         name: "lorem empsum",
       };
       let role = "s";
-      await login(user, 'admin');
-    }
-    else {
+      await login(user, "admin");
+    } else {
       try {
         setIsSubmitting(true);
         const {
@@ -33,16 +32,19 @@ const LoginForm = ({ onScreenChange }) => {
         } = await postRequest(postSigninForm, { email, password });
         setIsSubmitting(false);
         if (!error) {
-          await login(data, data.isAdmin ? 'admin' : 'farmer')
-          toast.success(message);
-        }
-        else {
+          if (data.subscribed)
+            await login(data, data.isAdmin ? "admin" : "farmer");
+          else {
+            await loginWithoutSession(data, data.isAdmin ? "admin" : "farmer");
+            setIsPricingModalVisible(true);
+          }
+        } else {
           toast.warn(message);
         }
       } catch (error) {
         setIsSubmitting(false);
 
-        toast.error("Something went wrong")
+        toast.error("Something went wrong");
       }
     }
   };
@@ -61,6 +63,10 @@ const LoginForm = ({ onScreenChange }) => {
 
   return (
     <div className="login_signup_form_container">
+      <SelectSubscriptionModal
+        show={isPricingModalVisible}
+        handleClose={() => setIsPricingModalVisible(false)}
+      />
       <div
         style={{
           display: "flex",
@@ -131,16 +137,16 @@ const LoginForm = ({ onScreenChange }) => {
                   disabled={isSubmitting}
                 >
                   Login
-                  {isSubmitting &&
-                    (<Spinner
+                  {isSubmitting && (
+                    <Spinner
                       variant="success"
                       as="span"
                       animation="border"
                       size="sm"
                       role="status"
                       aria-hidden="true"
-                    />)
-                  }
+                    />
+                  )}
                 </Button>
                 {/* <Divider style={{ color: "black" }}>
                     <span className="greyText">OR</span>

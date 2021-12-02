@@ -10,6 +10,7 @@ let VIEWANIMALSTATS = React.lazy(() =>
   import("../pages/animalStats/viewAnimalStats")
 );
 let FEEDLISTING = React.lazy(() => import("../pages/feedListing"));
+let MANAGEPROFILE = React.lazy(() => import("../pages/manageProfile"));
 
 export const BasicRoutes = [
   {
@@ -35,6 +36,14 @@ export const FarmerRoutes = [
     path: "/dashboard",
     exact: true,
     Component: DASHBOARDPAGE,
+    isProtected: true,
+    isPartOfDashboard: true,
+    role: ["farmer"],
+  },
+  {
+    path: "/manage-profile",
+    exact: true,
+    Component: MANAGEPROFILE,
     isProtected: true,
     isPartOfDashboard: true,
     role: ["farmer"],

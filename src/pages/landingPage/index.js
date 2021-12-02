@@ -1,8 +1,8 @@
+import { PricingSection } from "globalComponents";
 import React from "react";
 import {
   Banner,
   ChooseUsSection,
-  PricingSection,
   ServiceSection,
 } from "./components";
 

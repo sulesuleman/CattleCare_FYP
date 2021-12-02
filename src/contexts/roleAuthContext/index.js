@@ -45,6 +45,22 @@ function useRoleAuth() {
     });
   };
 
+  const loginWithoutSession = (user, role) => {
+    return new Promise((res) => {
+      setUser(user);
+      setRole(role);
+      res();
+    });
+  };
+
+  const createSession = () => {
+    return new Promise((res) => {
+      localStorage.setItem("cattleCare", JSON.stringify({ user, role }));
+      setAuthed(true);
+      res();
+    });
+  };
+
   return {
     authed,
     login,
@@ -52,6 +68,8 @@ function useRoleAuth() {
     user,
     setUser,
     role,
+    loginWithoutSession,
+    createSession,
   };
 }
 

@@ -13,6 +13,7 @@ const MedicalHistoryTable = ({ cattleId, refetch }) => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [medicalListing, setMedicalListing] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState();
+  const [refetchByEdit, setRefetchByEdit] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -26,7 +27,6 @@ const MedicalHistoryTable = ({ cattleId, refetch }) => {
         } = await getRequest(`${getMedicalHistoryOfAnimal}/${cattleId}`);
         if (!error) {
           setMedicalListing(record);
-          toast.success(message);
         } else {
           toast.warn(message);
         }
@@ -35,7 +35,7 @@ const MedicalHistoryTable = ({ cattleId, refetch }) => {
       }
     };
     init();
-  }, [refetch]);
+  }, [refetch, cattleId, refetchByEdit]);
 
   const getConfirmation = (e, id) => {
     Swal.fire({
@@ -84,6 +84,10 @@ const MedicalHistoryTable = ({ cattleId, refetch }) => {
     <div className="table-card">
       {selectedRecord && (
         <AddRecordModal
+          onSuccess={() => {
+            setRefetchByEdit((prevValue) => !prevValue);
+            setIsEditModalVisible(false);
+          }}
           selectedRecord={selectedRecord}
           mode={"edit"}
           show={isEditModalVisible}

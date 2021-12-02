@@ -15,6 +15,7 @@ const AddAnimalPage = ({
 }) => {
   const [isSubmitting, setSubmitting] = useState(false);
   const [animalImage, setAnimalImage] = useState(prefilledInfo?.picture);
+  const [refreshImage, setRefreshImage] = useState(false);
 
   const getInputClasses = (touched, fieldname, errors) => {
     if (touched[fieldname] && errors[fieldname]) {
@@ -52,7 +53,7 @@ const AddAnimalPage = ({
 
       if (!error) {
         formik.resetForm();
-        setAnimalImage();
+        setAnimalImage("");
         toast.success(message);
       } else {
         toast.warn(message);
@@ -87,7 +88,8 @@ const AddAnimalPage = ({
 
       if (!error) {
         formik.resetForm();
-        setAnimalImage();
+        setAnimalImage("");
+        setRefreshImage((prevValue) => !prevValue);
         onSuccess();
         toast.success(message);
       } else {
@@ -102,6 +104,14 @@ const AddAnimalPage = ({
   return (
     <div className="container-fluid">
       {mode === "add" && <PageHeading text="Add Animals" />}
+      <UploadPicture
+        refreshImage={refreshImage}
+        initialImage={prefilledInfo?.picture}
+        onChange={(e) =>
+          setAnimalImage(e?.target?.files ? e?.target.files[0] : "")
+        }
+      />
+
       <Formik
         onSubmit={mode === "edit" ? handleEditAnimal : handleAddAnimal}
         enableReinitialize
@@ -125,16 +135,11 @@ const AddAnimalPage = ({
         {({ touched, errors }) => (
           <div className="mt-5">
             <Form>
-              <UploadPicture
-                intialImage={prefilledInfo?.picture}
-                onChange={(e) =>
-                  setAnimalImage(e?.target?.files ? e?.target.files[0] : "")
-                }
-              />
               <div className="mt-2 row gy-3">
                 <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">Cattle Id</label>
                   <Field
+                    disabled={mode === "edit"}
                     name="cattleId"
                     type="text"
                     className={getInputClasses(touched, "cattleId", errors)}

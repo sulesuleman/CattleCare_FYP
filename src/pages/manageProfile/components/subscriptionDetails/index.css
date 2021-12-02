@@ -1,0 +1,12 @@
+.subscription_detail_container {
+}
+
+.subscription_label {
+  color: #6e7479;
+  font-family: "Poppins-Medium";
+  font-size: 16px;
+}
+
+.subscription_value {
+  font-size: 16px;
+}

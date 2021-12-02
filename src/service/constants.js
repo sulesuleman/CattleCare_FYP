@@ -13,7 +13,9 @@ let postSigninForm = "api/auth/login",
   updateFeed = "api/feed/update",
   deleteFeed = "api/feed/delete",
   uploadBulkAnimal = "api/animal/bulk-create",
-  chargeAmount = "api/stripe/charge";
+  chargeAmount = "api/stripe/charge",
+  getProfileInfo = "api/user/me",
+  updateProfile = "api/user/update";
 
 export {
   postSigninForm,
@@ -32,4 +34,6 @@ export {
   deleteFeed,
   uploadBulkAnimal,
   chargeAmount,
+  getProfileInfo,
+  updateProfile,
 };

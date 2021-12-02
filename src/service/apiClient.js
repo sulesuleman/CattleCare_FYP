@@ -24,7 +24,12 @@ const getRequest = async (endpoint, withJwt = true) => {
 
 // post request
 
-const postRequest = async (endpoint, body, withJwt = true) => {
+const postRequest = async (
+  endpoint,
+  body,
+  withJwt = true,
+  tokenFromFile = undefined
+) => {
   try {
     let options = {
       url: `/${endpoint}`,
@@ -32,7 +37,9 @@ const postRequest = async (endpoint, body, withJwt = true) => {
       method: "post",
     };
     if (withJwt) {
-      let token = JSON.parse(localStorage.getItem("cattleCare"))?.user?.token;
+      let token = tokenFromFile
+        ? tokenFromFile
+        : JSON.parse(localStorage.getItem("cattleCare"))?.user?.token;
       options = {
         ...options,
         headers: { Authorization: `bearer ${token}` },
@@ -102,6 +109,4 @@ const putFormData = async (endpoint, body) => {
   }
 };
 
-
-
-export { getRequest, postRequest, postFormData, putRequest , putFormData };
+export { getRequest, postRequest, postFormData, putRequest, putFormData };

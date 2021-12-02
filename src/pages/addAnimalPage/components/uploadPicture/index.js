@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import UPLOAD_PLACEHOLDER from "assets/images/upload.png";
 import { textGreyColor } from "globalStyles/globalStyle";
 import DeleteIcon from "globalComponents/deleteIcon";
 
-const UploadPicture = ({ onChange, intialImage }) => {
+const UploadPicture = ({ onChange, initialImage, refreshImage }) => {
+  console.log("initialImage", initialImage);
+
   const inputFieldRef = useRef();
-  const [selectedImageUrl, setSelectedImageUrl] = useState(
-    intialImage ?? undefined
-  );
+  const [selectedImageUrl, setSelectedImageUrl] = useState(initialImage);
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -18,7 +18,7 @@ const UploadPicture = ({ onChange, intialImage }) => {
 
   return (
     <div
-      className="upload_container"
+      className="upload_container mt-5"
       onClick={() => !selectedImageUrl && inputFieldRef.current.click()}
     >
       {!selectedImageUrl && (

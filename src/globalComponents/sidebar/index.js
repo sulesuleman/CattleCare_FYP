@@ -115,6 +115,6 @@ const MenuLink = ({ svg, to, label }) => (
     <NavLink to={to} activeClassName="is_active">
       <div>{label}</div>
       <div className="hovered_green_line"></div>
-    </NavLink>{" "}
+    </NavLink>
   </div>
 );

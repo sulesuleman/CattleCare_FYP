@@ -29,6 +29,20 @@ export const SignupSchema = Yup.object().shape({
     .required("Address is a required field"),
 });
 
+export const UpdateProfileSchema = Yup.object().shape({
+  email: Email,
+  name: Yup.string()
+    .min(3, "Minimum 3 symbols")
+    .required("Name is a required field"),
+  phoneNo: Yup.string()
+    .min(11, "Minimum 11 symbols")
+    .required("Phone number is a required field"),
+  address: Yup.string()
+    .min(5, "Minimum 5 symbols")
+    .max(100, "Maximum 100 symbols")
+    .required("Address is a required field"),
+});
+
 export const addAnimalSchema = Yup.object().shape({
   cattleId: Yup.string().required("Cattle id is a required field"),
   weight: Yup.string().required("Weight is a required field"),
@@ -37,9 +51,7 @@ export const addAnimalSchema = Yup.object().shape({
   cattleType: Yup.string().required("Cattle type is a required field"),
   sex: Yup.string().required("Sex is a required field"),
   price: Yup.string().required("Price is a required field"),
-  anticipationDate: Yup.string().required(
-    "Anticipation Date is a required field"
-  ),
+  anticipationDate: Yup.string().optional(),
   childCount: Yup.string().required("child count is a required field"),
 });
 
