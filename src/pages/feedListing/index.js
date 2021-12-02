@@ -115,13 +115,13 @@ const FeedListing = () => {
           <tbody>
             {feedListing.length > 0 &&
               feedListing.map((feed) => {
-                let { _id, feedName, date, feedType, price, feedBrand } = feed;
+                let { _id, feedName, date, feedType, price, feedBrand, quantity } = feed;
                 return (
                   <tr>
                     <td>{feedName}</td>
                     <td>{feedBrand}</td>
+                    <td>{quantity}</td>
                     <td>{price}</td>
-                    <td>{date}</td>
                     <td>{feedType}</td>
                     <td>{date}</td>
                     <td style={{ verticalAlign: "middle" }}>

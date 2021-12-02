@@ -32,14 +32,6 @@ export const BasicRoutes = [
 
 export const FarmerRoutes = [
   {
-    path: "/",
-    exact: true,
-    Component: LANDINGPAGE,
-    isProtected: false,
-    isPartOfDashboard: false,
-    role: ["all"],
-  },
-  {
     path: "/dashboard",
     exact: true,
     Component: DASHBOARDPAGE,
