@@ -6,11 +6,12 @@ import { GreenUnderline } from "..";
 import { greyishWhiteColor } from "../../globalStyles/globalStyle";
 import { PricingCard } from "../../pages/landingPage/components/pricingCard";
 import "./index.css";
-import { useHistory } from "react-router";
+import { Router, useHistory } from "react-router";
 
 const PricingSection = () => {
   const [selectedPlan, setselectedPlan] = useState();
-
+  const { user } = useRoleAuth();
+  const history = useHistory();
 
   const plans = [
     {
@@ -49,7 +50,11 @@ const PricingSection = () => {
               <PricingCard
                 {...{
                   ...plan,
-                  onClick: () => {                    
+                  onClick: () => {
+                    if (!user) {
+                      history.push('/login-signup')
+                      return
+                    }
                     setselectedPlan(plan);
                   },
                 }}
