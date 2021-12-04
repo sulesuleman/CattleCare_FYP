@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const server = "https://cattlecare-api.herokuapp.com";
-const local = "https://72a8-101-50-108-2.ngrok.io";
+const local = "http://localhost:80";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NODE_ENV === "production" ? server : local,
