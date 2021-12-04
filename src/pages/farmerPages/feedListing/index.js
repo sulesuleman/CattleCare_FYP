@@ -4,11 +4,9 @@ import { toast } from "react-toastify";
 import { getRequest, putRequest } from "service/apiClient";
 import { deleteFeed, getFeeds } from "service/constants";
 import Swal from "sweetalert2";
-import { PageHeading } from "../../globalComponents";
+import { PageHeading } from "globalComponents";
 import { AddFeedModal } from "./components";
 import { AddFeedModal as EditFeedModal } from "./components";
-
-import "./index.css";
 
 const FeedListing = () => {
   const [isAddFeedModalVisible, setIsAddFeedModalVisible] = useState(false);
@@ -115,7 +113,15 @@ const FeedListing = () => {
           <tbody>
             {feedListing.length > 0 &&
               feedListing.map((feed) => {
-                let { _id, feedName, date, feedType, price, feedBrand, quantity } = feed;
+                let {
+                  _id,
+                  feedName,
+                  date,
+                  feedType,
+                  price,
+                  feedBrand,
+                  quantity,
+                } = feed;
                 return (
                   <tr>
                     <td>{feedName}</td>

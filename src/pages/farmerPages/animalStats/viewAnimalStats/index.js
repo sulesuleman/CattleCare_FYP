@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Button } from "react-bootstrap";
 import { useLocation } from "react-router";
-import { PageHeading } from "../../../globalComponents";
+import { PageHeading } from "globalComponents";
 import { AddRecordModal, MedicalHistoryTable } from "./components";
 import "./index.css";
 

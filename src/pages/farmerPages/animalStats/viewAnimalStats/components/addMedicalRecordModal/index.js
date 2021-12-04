@@ -7,9 +7,9 @@ import {
   editMedicalHistoryOfAnimal,
   postAnimalHealth,
 } from "service/constants";
-import { getInputClasses } from "../../../../../assets/images/helpers";
-import { PageHeading } from "../../../../../globalComponents";
-import { addMedicalRecordSchema } from "../../../../../utils/validationSchema";
+import { getInputClasses } from "assets/images/helpers";
+import { PageHeading } from "globalComponents";
+import { addMedicalRecordSchema } from "utils/validationSchema";
 import "./index.css";
 
 const AddRecordModal = ({

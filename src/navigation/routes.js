@@ -1,16 +1,22 @@
 import React from "react";
 
-let LOGINSIGNUPPAGE = React.lazy(() => import("../pages/loginSignupPage"));
-let LANDINGPAGE = React.lazy(() => import("../pages/landingPage"));
-let DASHBOARDPAGE = React.lazy(() => import("../pages/dashboard"));
-let ADDANIMALPAGE = React.lazy(() => import("../pages/addAnimalPage"));
-let ANIMALSTATS = React.lazy(() => import("../pages/animalStats"));
-let FARMERPAGE = React.lazy(() => import("../pages/farmerStatistics"));
+let LOGINSIGNUPPAGE = React.lazy(() => import("pages/loginSignupPage"));
+let LANDINGPAGE = React.lazy(() => import("pages/landingPage"));
+let DASHBOARDPAGE = React.lazy(() => import("pages/farmerPages/dashboard"));
+let ADDANIMALPAGE = React.lazy(() => import("pages/farmerPages/addAnimalPage"));
+let ANIMALSTATS = React.lazy(() => import("pages/farmerPages/animalStats"));
+let FARMERPAGE = React.lazy(() => import("pages/adminPages/farmerStatistics"));
 let VIEWANIMALSTATS = React.lazy(() =>
-  import("../pages/animalStats/viewAnimalStats")
+  import("pages/farmerPages/animalStats/viewAnimalStats")
 );
-let FEEDLISTING = React.lazy(() => import("../pages/feedListing"));
-let MANAGEPROFILE = React.lazy(() => import("../pages/manageProfile"));
+let FEEDLISTING = React.lazy(() => import("pages/farmerPages/feedListing"));
+let MANAGEPROFILE = React.lazy(() => import("pages/farmerPages/manageProfile"));
+let DAILYFEEDCONSUMPTION = React.lazy(() =>
+  import("pages/farmerPages/dailyFeedConsumption")
+);
+let DAILYYIELDCONSUMPTION = React.lazy(() =>
+  import("pages/farmerPages/dailyYieldConsumption")
+);
 
 export const BasicRoutes = [
   {
@@ -76,6 +82,22 @@ export const FarmerRoutes = [
     path: "/manage-feeds",
     exact: true,
     Component: FEEDLISTING,
+    isProtected: true,
+    isPartOfDashboard: true,
+    role: ["farmer"],
+  },
+  {
+    path: "/manage-daily-feed",
+    exact: true,
+    Component: DAILYFEEDCONSUMPTION,
+    isProtected: true,
+    isPartOfDashboard: true,
+    role: ["farmer"],
+  },
+  {
+    path: "/manage-daily-yield",
+    exact: true,
+    Component: DAILYYIELDCONSUMPTION,
     isProtected: true,
     isPartOfDashboard: true,
     role: ["farmer"],

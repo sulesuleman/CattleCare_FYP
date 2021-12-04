@@ -1,12 +1,39 @@
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+import { PageHeading } from "globalComponents";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { PageHeading } from "../../globalComponents";
+import { getRequest } from "../../../service/apiClient";
 import { ExpenseGraph, FeedGraph, YieldGraph } from "./charts";
 import { StatCard } from "./components";
+import { toast } from "react-toastify";
 import "./index.css";
+import { getFarmerDashboardStatistics } from "../../../service/constants";
 
 const DashboardPage = () => {
+  const [farmerStatistics, setFarmerStatistics] = useState({});
+
+  useEffect(() => {
+    const init = async () => {
+      try {
+        let {
+          data: {
+            error,
+            message,
+            data,
+            data: { totalStats, totalAnimals },
+          },
+        } = await getRequest(getFarmerDashboardStatistics);
+        if (!error) {
+          setFarmerStatistics(data);
+        } else {
+          toast.warn(message);
+        }
+      } catch (err) {
+        toast.error("Something went wrong");
+      }
+    };
+    init();
+  }, []);
+
   const [greetingMsg, setGreetingMsg] = useState(() => {
     let today = new Date();
     let curHr = today.getHours();
@@ -40,7 +67,7 @@ const DashboardPage = () => {
             <StatCard
               bgColor="#E6F6EF"
               headingName="Total Animals"
-              count="20"
+              count={farmerStatistics.totalAnimals}
               txtColor="#456468"
             />
           </Col>
@@ -48,7 +75,7 @@ const DashboardPage = () => {
             <StatCard
               bgColor="#409872"
               headingName="Total Feed"
-              count="24"
+              count={farmerStatistics?.totalFeed}
               txtColor="white"
             />
           </Col>

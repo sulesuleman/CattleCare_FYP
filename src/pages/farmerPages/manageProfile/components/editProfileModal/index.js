@@ -2,7 +2,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "./index.css";
 
-import { PageHeading, RegisterForm } from "../../../../globalComponents";
+import { PageHeading, RegisterForm } from "globalComponents";
 
 const EditProfileModal = ({
   show,

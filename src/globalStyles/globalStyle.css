@@ -137,3 +137,6 @@ input::placeholder {
   -o-border-radius: 15px;
   overflow-x: auto;
 }
+.table-card tbody tr td {
+  text-transform: capitalize;
+}

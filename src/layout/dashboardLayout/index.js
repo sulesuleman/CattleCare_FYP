@@ -1,10 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
+import DashboardHeader from "globalComponents/dashboardHeader";
+import { SideBar } from "globalComponents/sidebar";
 import React from "react";
 import { useLocation } from "react-router";
-import DashboardHeader from "../../globalComponents/dashboardHeader";
-import { SideBar } from "../../globalComponents/sidebar";
-
 import "./index.css";
+
 
 const DashboardLayout = ({ children }) => {
   const location = useLocation();

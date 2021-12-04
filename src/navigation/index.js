@@ -1,6 +1,5 @@
 import { Loader } from "globalComponents";
 import React, { Suspense } from "react";
-import { Spinner } from "react-bootstrap";
 import { Redirect, Route } from "react-router";
 import { Switch } from "react-router-dom";
 import { useRoleAuth } from "../contexts";

@@ -5,4 +5,5 @@
 .user_name{
   color: #738C8E;
   margin-right: 10px;
+  text-transform: capitalize;
 }

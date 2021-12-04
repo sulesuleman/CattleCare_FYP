@@ -1,11 +1,15 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button, PageHeading } from "globalComponents";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { postFormData, putFormData, putRequest } from "service/apiClient";
-import { editAnimal, postAnimalForm } from "service/constants";
-import { addAnimalSchema } from "../../utils/validationSchema";
+import { postFormData, putFormData } from "service/apiClient";
+import {
+  editAnimal,
+  getCattleIdByEarTag,
+  postAnimalForm
+} from "service/constants";
+import { addAnimalSchema } from "utils/validationSchema";
 import { UploadPicture } from "./components";
 
 const AddAnimalPage = ({
@@ -16,6 +20,7 @@ const AddAnimalPage = ({
   const [isSubmitting, setSubmitting] = useState(false);
   const [animalImage, setAnimalImage] = useState(prefilledInfo?.picture);
   const [refreshImage, setRefreshImage] = useState(false);
+  const earTagRef = useRef();
 
   const getInputClasses = (touched, fieldname, errors) => {
     if (touched[fieldname] && errors[fieldname]) {
@@ -101,6 +106,26 @@ const AddAnimalPage = ({
     }
   };
 
+  const handleEartagPicUpload = async (e , setFieldValue) => {
+    let file = e.target?.files[0];
+    if (!file) return;
+    let formData = new FormData();
+    formData.append("picture", file);
+    try {
+      let {
+        data: { error, message },
+      } = await postFormData(getCattleIdByEarTag, formData);
+
+      if (!error) {
+        toast.success(message);
+      } else {
+        toast.warn(message);
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <div className="container-fluid">
       {mode === "add" && <PageHeading text="Add Animals" />}
@@ -132,11 +157,11 @@ const AddAnimalPage = ({
               }
         }
       >
-        {({ touched, errors }) => (
+        {({ touched, errors, setFieldValue }) => (
           <div className="mt-5">
             <Form>
               <div className="mt-2 row gy-3">
-                <div className="col-xs-12 col-sm-6">
+                <div className="col-xs-12 col-sm-6 position-relative">
                   <label className="mb-2">Cattle Id</label>
                   <Field
                     disabled={mode === "edit"}
@@ -150,25 +175,28 @@ const AddAnimalPage = ({
                     name="cattleId"
                     className="error"
                   />
+                  {getUploadIcon(() => earTagRef.current.click())}
                 </div>
-                {/* <div className="col-xs-12 col-sm-6">
+                <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">EarTag</label>
                   <Field
+                    ref={earTagRef}
                     type="file"
                     name="earTag"
                     placeholder="Upload picture of Ear Tag"
-                    className={`${getInputClasses(
-                      touched,
-                      "earTag",
-                      errors
-                    )} d-flex justify-items-center`}
+                    onChange={(e) => handleEartagPicUpload(e, setFieldValue)}
+                    // className={`${getInputClasses(
+                    //   touched,
+                    //   "earTag",
+                    //   errors
+                    // )} d-flex justify-items-center`}
                   />
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     component="div"
                     name="earTag"
                     className="error"
-                  />
-                </div> */}
+                  /> */}
+                </div>
               </div>
               <div className="row gy-3">
                 <div className="col-xs-12 col-sm-6">
@@ -313,5 +341,21 @@ const AddAnimalPage = ({
     </div>
   );
 };
+
+const getUploadIcon = (onClick) => (
+  <svg
+    onClick={onClick}
+    style={{ position: "absolute", right: 20, top: 50, cursor: "pointer" }}
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="bi bi-upload"
+    viewBox="0 0 16 16"
+  >
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+  </svg>
+);
 
 export default AddAnimalPage;

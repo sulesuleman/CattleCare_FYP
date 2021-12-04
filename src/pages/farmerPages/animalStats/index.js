@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Form, Table } from "react-bootstrap";
 import { useHistory } from "react-router";
 import "./index.css";
 import CSVReader from "react-csv-reader";
-import { PageHeading } from "../../globalComponents";
+import { PageHeading } from "globalComponents";
 import { Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import EditAnimalModal from "./editAnimalModal";
@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { getRequest, postFormData, putRequest } from "service/apiClient";
 import { toast } from "react-toastify";
 import { deleteAnimal, getAnimals, uploadBulkAnimal } from "service/constants";
+import { useDebounce } from "customHooks";
 
 const AnimalStats = () => {
   const uploadRef = useRef();
@@ -19,6 +20,8 @@ const AnimalStats = () => {
   const [animalsListing, setAnimalsListing] = useState([]);
   const [selectedCattleInfo, setSelectedCattleInfo] = useState();
   const [refetch, setRefetch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
     const init = async () => {
@@ -29,7 +32,7 @@ const AnimalStats = () => {
             message,
             data: { animals },
           },
-        } = await getRequest(getAnimals);
+        } = await getRequest(`${getAnimals}?search=${debouncedSearchTerm}`);
         setAnimalsListing(animals);
         if (error) {
           toast.warn(message);
@@ -40,7 +43,7 @@ const AnimalStats = () => {
     };
 
     init();
-  }, [refetch]);
+  }, [refetch, debouncedSearchTerm]);
 
   const removeAnimal = (id) => {
     setAnimalsListing((prevVal) => {
@@ -122,10 +125,17 @@ const AnimalStats = () => {
           setIsEditModalVisible(false);
         }}
       />
-      <div className="d-flex align-items-end flex-row-reverse mb-5 p-1">
+      <div className="d-flex justify-content-between mb-5 mt-5 p-1 align-items-center">
+        <Form.Control
+          type="text"
+          style={{ maxWidth: 300 }}
+          placeholder="Search here"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <Button
           type="primary"
           className="btn_green"
+          style={{ height: 40 }}
           onClick={() => {
             document.getElementById("csvId").click();
           }}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { PageHeading } from "../../globalComponents";
+import { PageHeading } from "globalComponents";
 import {
   BarChart,
   DoughnutChart,

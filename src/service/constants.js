@@ -15,7 +15,13 @@ let postSigninForm = "api/auth/login",
   uploadBulkAnimal = "api/animal/bulk-create",
   chargeAmount = "api/stripe/charge",
   getProfileInfo = "api/user/me",
-  updateProfile = "api/user/update";
+  updateProfile = "api/user/update",
+  getCattleIdByEarTag = "api/animal/upload-eartag",
+  postDailyFeed = "api/feed/daily-add",
+  getDailyFeeds = "api/feed/daily",
+  postDailyYield = "api/animal/daily-add",
+  getDailyYields = "api/animal/daily-yield",
+  getFarmerDashboardStatistics = "/api/user/farmer/stats";
 
 export {
   postSigninForm,
@@ -36,4 +42,10 @@ export {
   chargeAmount,
   getProfileInfo,
   updateProfile,
+  getCattleIdByEarTag,
+  postDailyFeed,
+  getDailyFeeds,
+  postDailyYield,
+  getDailyYields,
+  getFarmerDashboardStatistics,
 };

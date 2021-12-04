@@ -4,9 +4,9 @@ import { Button, Col, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { postRequest, putRequest } from "service/apiClient";
 import { addFeed, updateFeed } from "service/constants";
-import { getInputClasses } from "../../../../assets/images/helpers";
-import { PageHeading } from "../../../../globalComponents";
-import { addFeedSchema } from "../../../../utils/validationSchema";
+import { getInputClasses } from "assets/images/helpers";
+import { PageHeading } from "globalComponents";
+import { addFeedSchema } from "utils/validationSchema";
 import "./index.css";
 
 const AddFeedModal = ({
