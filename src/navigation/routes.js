@@ -18,6 +18,10 @@ let DAILYYIELDCONSUMPTION = React.lazy(() =>
   import("pages/farmerPages/dailyYieldConsumption")
 );
 
+let MANAGEFARMER = React.lazy(() =>
+  import("pages/adminPages/manageFarmerPage")
+);
+
 export const BasicRoutes = [
   {
     path: "/login-signup",
@@ -109,6 +113,14 @@ export const AdminRoutes = [
     path: "/farmer-statistics",
     exact: true,
     Component: FARMERPAGE,
+    isProtected: true,
+    isPartOfDashboard: true,
+    role: ["admin"],
+  },
+  {
+    path: "/manage-farmers",
+    exact: true,
+    Component: MANAGEFARMER,
     isProtected: true,
     isPartOfDashboard: true,
     role: ["admin"],

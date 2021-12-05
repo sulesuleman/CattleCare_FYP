@@ -21,7 +21,11 @@ let postSigninForm = "api/auth/login",
   getDailyFeeds = "api/feed/daily",
   postDailyYield = "api/animal/daily-add",
   getDailyYields = "api/animal/daily-yield",
-  getFarmerDashboardStatistics = "/api/user/farmer/stats";
+  getFarmerDashboardStatistics = "api/user/farmer/stats",
+  getAllFarmers = "api/user/all",
+  toggleFarmerBlocking = "api/user/block-unblock",
+  deleteFarmer = "api/user/delete",
+  getAdminDashboardStatistics = "api/user/admin/stats";
 
 export {
   postSigninForm,
@@ -48,4 +52,8 @@ export {
   postDailyYield,
   getDailyYields,
   getFarmerDashboardStatistics,
+  getAllFarmers,
+  toggleFarmerBlocking,
+  deleteFarmer,
+  getAdminDashboardStatistics,
 };

@@ -1,0 +1,17 @@
+.stat_card {
+  border-radius: 10px;
+  border: 4px solid #4c6a6e;
+  min-height: 150px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.stat_card_heading {
+  font-family: "Poppins-SemiBold";
+  font-size: 24px;
+}
+.stat_card_count {
+  font-family: "Poppins-SemiBold";
+  margin-top: auto;
+  font-size: 28px;
+}

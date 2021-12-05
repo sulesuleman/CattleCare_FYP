@@ -1,15 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
+import moment from "moment";
 
-const FeedGraph = () => {
+const FeedGraph = ({ data }) => {
   const chartRef = useRef();
 
   useEffect(() => {
+    if (!data) return;
     let options = {
       series: [
         {
           name: "Inflation",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+          data: data.map(({ consumption }) => consumption),
         },
       ],
       chart: {
@@ -30,7 +32,7 @@ const FeedGraph = () => {
       dataLabels: {
         enabled: true,
         formatter: function (val) {
-          return val + "%";
+          return val + "kg";
         },
         offsetY: -20,
         style: {
@@ -40,20 +42,7 @@ const FeedGraph = () => {
       },
 
       xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
+        categories: data.map(({ month }) => moment(month, "MM").format("MMMM")),
         position: "top",
         axisBorder: {
           show: false,
@@ -106,7 +95,7 @@ const FeedGraph = () => {
     var chart = new ApexCharts(chartRef.current, options);
 
     chart.render();
-  }, []);
+  }, [data]);
 
   return <div ref={chartRef}></div>;
 };

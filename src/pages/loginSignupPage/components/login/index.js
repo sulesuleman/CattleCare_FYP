@@ -21,6 +21,7 @@ const LoginForm = ({ onScreenChange }) => {
     if (email === "admin@gmail.com" && password === "1234567890") {
       let user = {
         name: "lorem empsum",
+        
       };
       let role = "s";
       await login(user, "admin");

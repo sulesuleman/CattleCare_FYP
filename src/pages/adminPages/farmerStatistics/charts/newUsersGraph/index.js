@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 import moment from "moment";
 
-const YieldGraph = ({ data }) => {
+const NewUserGraph = ({ data }) => {
   const chartRef = useRef();
+  console.log("data" , data);
 
   useEffect(() => {
     if (!data) return;
@@ -15,18 +16,18 @@ const YieldGraph = ({ data }) => {
         type: "line",
         stacked: false,
       },
-      dataLabels: {
-        enabled: true,
-        formatter: function (val) {
-          return val + "kg";
-        },
-      },
+      // dataLabels: {
+      //   enabled: true,
+      //   formatter: function (val) {
+      //     return val + ;
+      //   },
+      // },
 
       colors: ["#FF1654", "#247BA0"],
       series: [
         {
-          name: "Consumption",
-          data: data.map(({ consumption }) => consumption),
+          name: "New Users Signed up",
+          data: data.map(({ total }) => total),
         },
       ],
       stroke: {
@@ -38,7 +39,7 @@ const YieldGraph = ({ data }) => {
         },
       },
       xaxis: {
-        categories: data.map(({ day }) => moment(day, "DD").format('dddd')),
+        categories: data.map(({ month }) => moment(month, "MM").format("MMMM")),
       },
       tooltip: {
         shared: false,
@@ -61,4 +62,4 @@ const YieldGraph = ({ data }) => {
   return <div ref={chartRef}></div>;
 };
 
-export default YieldGraph;
+export default NewUserGraph;

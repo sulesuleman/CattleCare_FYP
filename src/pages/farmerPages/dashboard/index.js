@@ -15,12 +15,7 @@ const DashboardPage = () => {
     const init = async () => {
       try {
         let {
-          data: {
-            error,
-            message,
-            data,
-            data: { totalStats, totalAnimals },
-          },
+          data: { error, message, data },
         } = await getRequest(getFarmerDashboardStatistics);
         if (!error) {
           setFarmerStatistics(data);
@@ -67,7 +62,7 @@ const DashboardPage = () => {
             <StatCard
               bgColor="#E6F6EF"
               headingName="Total Animals"
-              count={farmerStatistics.totalAnimals}
+              count={farmerStatistics?.totalAnimals}
               txtColor="#456468"
             />
           </Col>
@@ -85,7 +80,7 @@ const DashboardPage = () => {
               txtColor="#456468"
               bgColor="#E6F6EF"
             >
-              <YieldGraph />
+              <YieldGraph data={farmerStatistics?.yieldGraph} />
             </StatCard>
           </Col>
           <Col xs={12} md={6}>
@@ -103,7 +98,7 @@ const DashboardPage = () => {
               txtColor="#456468"
               bgColor="#E6F6EF"
             >
-              <FeedGraph />
+              <FeedGraph data={farmerStatistics?.feedGraph} />
             </StatCard>
           </Col>
         </Row>
