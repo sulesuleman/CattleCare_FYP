@@ -106,7 +106,7 @@ const AddAnimalPage = ({
     }
   };
 
-  const handleEartagPicUpload = async (e , setFieldValue) => {
+  const handleEartagPicUpload = async (e, setFieldValue) => {
     let file = e.target?.files[0];
     if (!file) return;
     let formData = new FormData();
@@ -145,16 +145,16 @@ const AddAnimalPage = ({
           prefilledInfo
             ? { ...prefilledInfo }
             : {
-                cattleId: "",
-                weight: "",
-                age: "",
-                breedType: "",
-                cattleType: "",
-                sex: "",
-                price: "",
-                anticipationDate: "",
-                childCount: "",
-              }
+              cattleId: "",
+              weight: "",
+              age: "",
+              breedType: "",
+              cattleType: "",
+              sex: "",
+              price: "",
+              anticipationDate: "",
+              childCount: "",
+            }
         }
       >
         {({ touched, errors, setFieldValue }) => (
@@ -175,9 +175,9 @@ const AddAnimalPage = ({
                     name="cattleId"
                     className="error"
                   />
-                  {getUploadIcon(() => earTagRef.current.click())}
+                  {/* {getUploadIcon(() => earTagRef.current.click())} */}
                 </div>
-                <div className="col-xs-12 col-sm-6">
+                {/* <div className="col-xs-12 col-sm-6">
                   <label className="mb-2">EarTag</label>
                   <Field
                     ref={earTagRef}
@@ -185,18 +185,18 @@ const AddAnimalPage = ({
                     name="earTag"
                     placeholder="Upload picture of Ear Tag"
                     onChange={(e) => handleEartagPicUpload(e, setFieldValue)}
-                    // className={`${getInputClasses(
-                    //   touched,
-                    //   "earTag",
-                    //   errors
-                    // )} d-flex justify-items-center`}
+                    className={`${getInputClasses(
+                      touched,
+                      "earTag",
+                      errors
+                    )} d-flex justify-items-center`}
                   />
-                  {/* <ErrorMessage
+                  <ErrorMessage
                     component="div"
                     name="earTag"
                     className="error"
-                  /> */}
-                </div>
+                  />
+                </div> */}
               </div>
               <div className="row gy-3">
                 <div className="col-xs-12 col-sm-6">
