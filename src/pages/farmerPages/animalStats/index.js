@@ -172,6 +172,7 @@ const AnimalStats = () => {
           <thead>
             <tr>
               <th style={{ minWidth: "130px" }}>Cattle Type</th>
+              <th style={{ minWidth: "130px" }}>Cattle Id</th>
               <th style={{ minWidth: "130px" }}>Breed Type</th>
               <th style={{ minWidth: "130px" }}>Price</th>
               <th style={{ minWidth: "130px" }}>Sex</th>
@@ -193,6 +194,7 @@ const AnimalStats = () => {
                 price,
                 sex,
                 cattleType,
+                cattleId,
                 _id,
               } = animalDetail;
 
@@ -205,6 +207,7 @@ const AnimalStats = () => {
                   <motion.td whileHover={{ textDecoration: "underline" }}>
                     {cattleType}
                   </motion.td>
+                  <td>{cattleId}</td>
                   <td>{breedType}</td>
                   <td>{price}</td>
                   <td>{sex}</td>
