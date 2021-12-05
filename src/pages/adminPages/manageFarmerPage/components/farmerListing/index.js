@@ -127,7 +127,7 @@ const FarmerListingTable = () => {
                       {subscribed ? "Yes" : "No"}
                     </Badge>
                   </td>
-                  <td>{email}</td>
+                  <td >{email}</td>
                   <td>{phoneNo}</td>
 
                   <td style={{ verticalAlign: "middle" }}>
