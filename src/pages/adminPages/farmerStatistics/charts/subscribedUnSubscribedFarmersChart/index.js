@@ -13,6 +13,7 @@ const SubscribedUnsubscribedFarmersChart = ({ data }) => {
       series: [data?.subscriberCount, data?.unsubscribeCount],
       chart: {
         width: 380,
+        height: 500,
         type: "pie",
       },
       labels: ["Subscribed Users", "Un-Subscribed Users"],
