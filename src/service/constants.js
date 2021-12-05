@@ -25,8 +25,10 @@ let postSigninForm = "api/auth/login",
   getAllFarmers = "api/user/all",
   toggleFarmerBlocking = "api/user/block-unblock",
   deleteFarmer = "api/user/delete",
-  getAdminDashboardStatistics = "api/user/admin/stats";
-
+  getAdminDashboardStatistics = "api/user/admin/stats",
+  addExpenses = "api/expense/add",
+  getExpenses = "api/expense",
+  getEconomy = "api/expense/economy";
 export {
   postSigninForm,
   postSignupForm,
@@ -56,4 +58,7 @@ export {
   toggleFarmerBlocking,
   deleteFarmer,
   getAdminDashboardStatistics,
+  addExpenses,
+  getExpenses,
+  getEconomy,
 };

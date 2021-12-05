@@ -2,8 +2,8 @@ import { PageHeading } from "globalComponents";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { getRequest } from "../../../service/apiClient";
-import { ExpenseGraph, FeedGraph, YieldGraph } from "./charts";
-import { StatCard } from "./components";
+import { FeedGraph, YieldGraph } from "./charts";
+import { StatCard, ExpenseTable } from "./components";
 import { toast } from "react-toastify";
 import "./index.css";
 import { getFarmerDashboardStatistics } from "../../../service/constants";
@@ -50,7 +50,7 @@ const DashboardPage = () => {
       </div>
       <div className="stats_container">
         <Row className="gx-3 gx-lg-4 gy-3 mt-5">
-          <Col xs={12} md={6}>
+          <Col xs={12} sm={6} md={4}>
             <StatCard
               bgColor="#E6F6EF"
               headingName="Total Animals"
@@ -58,7 +58,17 @@ const DashboardPage = () => {
               txtColor="#456468"
             />
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} sm={6} md={4}>
+            <StatCard
+              bgColor="#E6F6EF"
+              headingName="Net Profit"
+              count={`${farmerStatistics?.profit > 0 ? "+" : "-"}${
+                farmerStatistics?.profit
+              }%`}
+              txtColor="#456468"
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4}>
             <StatCard
               bgColor="#409872"
               headingName="Total Feed"
@@ -75,15 +85,6 @@ const DashboardPage = () => {
               <YieldGraph data={farmerStatistics?.yieldGraph} />
             </StatCard>
           </Col>
-          {/* <Col xs={12} md={6}>
-            <StatCard
-              headingName="Expense Stats"
-              txtColor="#456468"
-              bgColor="#E6F6EF"
-            >
-              <ExpenseGraph />
-            </StatCard>
-          </Col> */}
           <Col xs={12} md={6}>
             <StatCard
               headingName="Feed Stats"
@@ -93,14 +94,15 @@ const DashboardPage = () => {
               <FeedGraph data={farmerStatistics?.feedGraph} />
             </StatCard>
           </Col>
-          {/* <Col xs={12} md={6} lg={4}>
+          <Col xs={12} md={6}>
             <StatCard
-              bgColor="#409872"
-              headingName="Total Expenses"
-              count="$15000"
-              txtColor="white"
-            />
-          </Col> */}
+              headingName="Expense Stats"
+              txtColor="#456468"
+              bgColor="#E6F6EF"
+            >
+              <ExpenseTable />
+            </StatCard>
+          </Col>
         </Row>
       </div>
     </div>
