@@ -1,0 +1,27 @@
+.reset_response_container {
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.reset_response_container img {
+  margin-bottom: 30px;
+  width: 100px;
+  height: auto;
+}
+
+.reset_response_container label {
+  font-size: 12px;
+  font-family: "Poppins-Medium";
+}
+
+.reset_response_container input {
+  font-size: 14px;
+}
+
+.reset_response_container input::placeholder {
+  font-size: 10px;
+}

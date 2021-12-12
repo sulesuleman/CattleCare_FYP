@@ -28,7 +28,10 @@ let postSigninForm = "api/auth/login",
   getAdminDashboardStatistics = "api/user/admin/stats",
   addExpenses = "api/expense/add",
   getExpenses = "api/expense",
-  getEconomy = "api/expense/economy";
+  getEconomy = "api/expense/economy",
+  forgotPassword = "api/auth/forget-password",
+  resetPassword = "";
+
 export {
   postSigninForm,
   postSignupForm,
@@ -61,4 +64,6 @@ export {
   addExpenses,
   getExpenses,
   getEconomy,
+  forgotPassword,
+  resetPassword,
 };

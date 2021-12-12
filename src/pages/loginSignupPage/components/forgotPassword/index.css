@@ -1,0 +1,12 @@
+.forgot_password label {
+  font-size: 12px;
+  font-family: "Poppins-Medium";
+}
+
+.forgot_password input {
+  font-size: 14px;
+}
+
+.forgot_password input::placeholder {
+  font-size: 10px;
+}

@@ -8,12 +8,15 @@ import { LoginSchema } from "../../../../utils/validationSchema";
 import { useRoleAuth } from "../../../../contexts";
 import { toast } from "react-toastify";
 import { SelectSubscriptionModal } from "..";
+import ForgotPasswordModal from "../forgotPassword";
 
 const LoginForm = ({ onScreenChange }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const history = useHistory();
   const { login, loginWithoutSession } = useRoleAuth();
   const [isPricingModalVisible, setIsPricingModalVisible] = useState(false);
+  const [isForgotPasswordModalVisbile, setIsForgotPasswordModalVisbile] =
+    useState(false);
 
   const handleLoginSubmit = async (values) => {
     setIsSubmitting(true);
@@ -21,7 +24,6 @@ const LoginForm = ({ onScreenChange }) => {
     if (email === "admin@gmail.com" && password === "1234567890") {
       let user = {
         name: "lorem empsum",
-        
       };
       let role = "s";
       await login(user, "admin");
@@ -68,6 +70,12 @@ const LoginForm = ({ onScreenChange }) => {
         show={isPricingModalVisible}
         handleClose={() => setIsPricingModalVisible(false)}
       />
+      {
+        <ForgotPasswordModal
+          isModalVisible={isForgotPasswordModalVisbile}
+          handleOk={() => setIsForgotPasswordModalVisbile(false)}
+        />
+      }
       <div
         style={{
           display: "flex",
@@ -129,6 +137,19 @@ const LoginForm = ({ onScreenChange }) => {
                   name="password"
                   className="error"
                 />
+              </div>
+              <div className="mt-3">
+                <span className="greyText">Forgot Password? </span>{" "}
+                <span
+                  onClick={() => setIsForgotPasswordModalVisbile(true)}
+                  style={{
+                    color: "#2cb178",
+                    userSelect: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  Click Here
+                </span>
               </div>
               <div style={{ marginTop: 30 }}>
                 <Button

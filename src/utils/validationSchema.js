@@ -83,3 +83,16 @@ export const addFeedSchema = Yup.object().shape({
   price: Yup.number().required("Price is a required field"),
   date: Yup.date().required("Date is a required field"),
 });
+
+export const forgotPasswordSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Wrong email format")
+    .required("Email is a required field"),
+});
+
+export const newPasswordSchema = Yup.object().shape({
+  password: Yup.string().min(2, "too short").required("Password is required"),
+  newPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Please retype password"),
+});

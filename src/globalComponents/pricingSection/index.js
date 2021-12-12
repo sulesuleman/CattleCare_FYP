@@ -15,26 +15,27 @@ const PricingSection = () => {
 
   const plans = [
     {
-      planName: "50 Cattle Package",
-      price: "99",
+      limit: 250,
+      planName: "250 Cattle Package",
+      price: "3000",
       options: ["15 days free trial", "Within trial period cancel time"],
     },
     {
-      planName: "150 Cattle Package",
-      price: "199",
+      limit: 500,
+      planName: "500 Cattle Package",
+      price: "5000",
       options: ["15 days trial", "Within trail period cancel any time"],
     },
     {
-      planName: "300 Cattle Package",
-      price: "299",
+      limit: 1000,
+      planName: "1000 Cattle Package",
+      price: "7000",
       options: ["15 days trial", "Within trail period cancel any time"],
     },
   ];
 
   return (
-    <div
-      className="pricing_section_container"
-    >
+    <div className="pricing_section_container">
       {selectedPlan ? (
         <PaymentScreen
           selectedPlan={selectedPlan}
@@ -52,8 +53,8 @@ const PricingSection = () => {
                   ...plan,
                   onClick: () => {
                     if (!user) {
-                      history.push('/login-signup')
-                      return
+                      history.push("/login-signup");
+                      return;
                     }
                     setselectedPlan(plan);
                   },

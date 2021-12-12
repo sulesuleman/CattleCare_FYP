@@ -1,6 +1,10 @@
 import React from "react";
 
 let LOGINSIGNUPPAGE = React.lazy(() => import("pages/loginSignupPage"));
+let RESETPASSWORDPAGE = React.lazy(() =>
+  import("pages/ResetPasswordResponsePage")
+);
+
 let LANDINGPAGE = React.lazy(() => import("pages/landingPage"));
 let DASHBOARDPAGE = React.lazy(() => import("pages/farmerPages/dashboard"));
 let ADDANIMALPAGE = React.lazy(() => import("pages/farmerPages/addAnimalPage"));
@@ -35,6 +39,14 @@ export const BasicRoutes = [
     path: "/",
     exact: true,
     Component: LANDINGPAGE,
+    isProtected: false,
+    isPartOfDashboard: false,
+    role: ["all"],
+  },
+  {
+    path: "/reset-password",
+    exact: true,
+    Component: RESETPASSWORDPAGE,
     isProtected: false,
     isPartOfDashboard: false,
     role: ["all"],

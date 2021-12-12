@@ -82,6 +82,7 @@ const StripeForm = ({ stripe, elements, selectedPlan, goBack }) => {
       } = await postRequest(
         chargeAmount,
         {
+          limit:selectedPlan?.limit,
           amount: selectedPlan?.price,
           source: response?.token?.id,
           receipt_email: user?.email,
