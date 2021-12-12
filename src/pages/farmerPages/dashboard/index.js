@@ -62,9 +62,8 @@ const DashboardPage = () => {
             <StatCard
               bgColor="#E6F6EF"
               headingName="Net Profit"
-              count={`${farmerStatistics?.profit > 0 ? "+" : "-"}${
-                farmerStatistics?.profit
-              }%`}
+              count={`${farmerStatistics?.profit > 0 ? "+" : ''}${farmerStatistics?.profit
+                }%`}
               txtColor="#456468"
             />
           </Col>
