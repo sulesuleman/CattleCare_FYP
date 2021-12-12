@@ -104,7 +104,9 @@ const AnimalStats = () => {
       } = await postFormData(uploadBulkAnimal, formData, { type: "text/csv" });
       if (!error) {
         toast.success(message);
-        setRefetch((prevVal) => !prevVal);
+        setTimeout(() => {
+          setRefetch((prevVal) => !prevVal);
+        }, 1000);
       } else {
         toast.error(message);
       }

@@ -15,7 +15,7 @@ export const PricingCard = ({
         <div className="pricing_heading_container">
           <h3>{planName}</h3>
         </div>
-        <div className="price">${price}/month</div>
+        <div className="price">PKR {price}/month</div>
         <div className="pricing_option_container">
           {options.map((optName) => (
             <div>
