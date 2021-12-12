@@ -30,7 +30,7 @@ let postSigninForm = "api/auth/login",
   getExpenses = "api/expense",
   getEconomy = "api/expense/economy",
   forgotPassword = "api/auth/forget-password",
-  resetPassword = "";
+  resetPassword = "api/auth/reset-password";
 
 export {
   postSigninForm,
